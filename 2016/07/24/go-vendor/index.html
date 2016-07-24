@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      go-vendor | the-world-wang 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.不过之前的基础比较薄弱,很多知识没有系统今天就说一下golang的包管理机制.
+为何要进行包管理GOPATH切换go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.在多个GOPATH的情况下,go get默认安装到第一个路径下.
+缺乏依赖版本直接依赖源码,没有一个明确的版本标识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-vendor | the-world-wang">
+<meta property="og:url" content="http://yoursite.com/2016/07/24/go-vendor/index.html">
+<meta property="og:site_name" content="the-world-wang">
+<meta property="og:description" content="之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.不过之前的基础比较薄弱,很多知识没有系统今天就说一下golang的包管理机制.
+为何要进行包管理GOPATH切换go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.在多个GOPATH的情况下,go get默认安装到第一个路径下.
+缺乏依赖版本直接依赖源码,没有一个明确的版本标识">
+<meta property="og:updated_time" content="2016-07-24T13:20:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go-vendor | the-world-wang">
+<meta name="twitter:description" content="之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.不过之前的基础比较薄弱,很多知识没有系统今天就说一下golang的包管理机制.
+为何要进行包管理GOPATH切换go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.在多个GOPATH的情况下,go get默认安装到第一个路径下.
+缺乏依赖版本直接依赖源码,没有一个明确的版本标识">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">the-world-wang</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">go-vendor</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-07-24" class="post-meta__date date">2016-07-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.<br>不过之前的基础比较薄弱,很多知识没有系统<br>今天就说一下golang的包管理机制.</p>
+<h2 id="为何要进行包管理"><a href="#为何要进行包管理" class="headerlink" title="为何要进行包管理"></a>为何要进行包管理</h2><h3 id="GOPATH切换"><a href="#GOPATH切换" class="headerlink" title="GOPATH切换"></a>GOPATH切换</h3><p>go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.<br>在多个GOPATH的情况下,<code>go get</code>默认安装到第一个路径下.</p>
+<h3 id="缺乏依赖版本"><a href="#缺乏依赖版本" class="headerlink" title="缺乏依赖版本"></a>缺乏依赖版本</h3><p>直接依赖源码,没有一个明确的版本标识,开发团队容易产生不一样的版本.(比如go get的时间不一样,就会产生不一样的版本)</p>
+<h2 id="go-vendor"><a href="#go-vendor" class="headerlink" title="go vendor"></a>go vendor</h2><p>vendor这个词翻译成”供应商”可能更满足他的应用场景.在vendor问世之前,一般都是通过第三方的包管理框架来实现,<br>比如godep(我看我们公司一个大神的源码就是用的这个工具)<br>go1.5默认不开启,需要设置<code>GO15VENDOREXPERIMENT=1</code>,而go1.6则默认开启</p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vendor</span><br><span class="line">    github.com/</span><br><span class="line">    golang.org/</span><br><span class="line">    vendor.json</span><br><span class="line">main.go</span><br></pre></td></tr></table></figure>
+<p>本项目的目录我觉得也可以放到vendor里面</p>
+<h3 id="如何保存文件到vendor里面"><a href="#如何保存文件到vendor里面" class="headerlink" title="如何保存文件到vendor里面"></a>如何保存文件到vendor里面</h3><p>官方并没有提供工具,可以通过 <a href="https://github.com/kardianos/govendor" target="_blank" rel="external"></a>这个工具完成<br>其操作也比较简单</p>
+<ol>
+<li>govendor init 初始化,即生成目录结构,并生成vendor.json</li>
+<li>govendor add gin 从GOPATH里面新增到项目目录</li>
+<li>govendor sync 根据verndor.json同步项目</li>
+<li>govendor fetch 新增或更新</li>
+<li>goverdor get 类似于<code>go get</code>,但是会复制一遍到本项目</li>
+</ol>
+<h2 id="附录-A-提供go-get翻墙的方法"><a href="#附录-A-提供go-get翻墙的方法" class="headerlink" title="附录-A 提供go get翻墙的方法"></a>附录-A 提供go get翻墙的方法</h2><ol>
+<li>开启socks5代理（比如shadowsocks)</li>
+<li><p>安装并启动polipo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. brew install polipo</span><br><span class="line">2. vi /usr/local/opt/polipo/homebrew.mxcl.polipo.plist</span><br><span class="line">3. 在&lt;array&gt; 和 &lt;/array&gt;之间添加一行：</span><br><span class="line">    &lt;string&gt;socksParentProxy=localhost:1080&lt;/string&gt;</span><br><span class="line">4. 执行命令： </span><br><span class="line">    (1) ln -sfv /usr/local/opt/polipo/*.plist ~/Library/LaunchAgents</span><br><span class="line">    (2) launchctl load ~/Library/LaunchAgents/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置终端环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http_proxy=127.0.0.1:8123</span><br><span class="line">https_proxy=127.0.0.1:8123</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置git的代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:8123</span><br><span class="line">git config --global https.proxy 127.0.0.1:8123</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://winkyao.com/2016/04/07/golang-vendor/" target="_blank" rel="external">golang-vendor</a><br><a href="http://www.infoq.com/cn/articles/golang-package-management/" target="_blank" rel="external">golang的包管理之道</a><br><a href="http://blog.csdn.net/boydfd/article/details/50923577" target="_blank" rel="external">go get翻墙</a></p>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/07/24/go-vendor/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"the-world-wang"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
