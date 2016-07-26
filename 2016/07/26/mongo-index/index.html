@@ -4,30 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Java-concurrent | the-world-wang</title>
+  <title>mongo索引(-) | the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java创建和销毁线程还是非常消耗资源的,以前我们都是通过new一个Thread对象出来,java1.5以后推荐使用线程池的方式创建线程
-Executors类java通过Executors类的静态方法创建线程池
-
-ExecutorService newFixedThreadPool(int nThreads):创建一个可重用的/具有固定数量的线程池
-ExecutorService newSingl">
+  <meta name="description" content="mongo的索引种类很多,这也是mongo查询效率高的很大原因
+索引的分类
+基本索引
+Text索引
+Geo索引(地理位置)Geo索引相对比较多,比较复杂,其中还涉及到是普通的点还是GeoJsonPoint,而且各个command的单位也不一样,可能会在续集里面写到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-concurrent">
-<meta property="og:url" content="http://yoursite.com/2016/07/24/java-concurrent/index.html">
+<meta property="og:title" content="mongo索引(-)">
+<meta property="og:url" content="http://yoursite.com/2016/07/26/mongo-index/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description" content="java创建和销毁线程还是非常消耗资源的,以前我们都是通过new一个Thread对象出来,java1.5以后推荐使用线程池的方式创建线程
-Executors类java通过Executors类的静态方法创建线程池
-
-ExecutorService newFixedThreadPool(int nThreads):创建一个可重用的/具有固定数量的线程池
-ExecutorService newSingl">
-<meta property="og:updated_time" content="2016-07-25T02:04:37.000Z">
+<meta property="og:description" content="mongo的索引种类很多,这也是mongo查询效率高的很大原因
+索引的分类
+基本索引
+Text索引
+Geo索引(地理位置)Geo索引相对比较多,比较复杂,其中还涉及到是普通的点还是GeoJsonPoint,而且各个command的单位也不一样,可能会在续集里面写到">
+<meta property="og:updated_time" content="2016-07-26T14:59:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java-concurrent">
-<meta name="twitter:description" content="java创建和销毁线程还是非常消耗资源的,以前我们都是通过new一个Thread对象出来,java1.5以后推荐使用线程池的方式创建线程
-Executors类java通过Executors类的静态方法创建线程池
-
-ExecutorService newFixedThreadPool(int nThreads):创建一个可重用的/具有固定数量的线程池
-ExecutorService newSingl">
+<meta name="twitter:title" content="mongo索引(-)">
+<meta name="twitter:description" content="mongo的索引种类很多,这也是mongo查询效率高的很大原因
+索引的分类
+基本索引
+Text索引
+Geo索引(地理位置)Geo索引相对比较多,比较复杂,其中还涉及到是普通的点还是GeoJsonPoint,而且各个command的单位也不一样,可能会在续集里面写到">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -209,11 +209,11 @@ ExecutorService newSingl">
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-java-concurrent" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mongo-index" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/24/java-concurrent/" class="article-date">
-  	<time datetime="2016-07-24T13:30:18.000Z" itemprop="datePublished">2016-07-24</time>
+      <a href="/2016/07/26/mongo-index/" class="article-date">
+  	<time datetime="2016-07-26T14:39:29.000Z" itemprop="datePublished">2016-07-26</time>
 </a>
     </div>
   
@@ -226,7 +226,7 @@ ExecutorService newSingl">
         
   
     <h1 class="article-title" itemprop="name">
-      Java-concurrent
+      mongo索引(-)
     </h1>
   
 
@@ -242,20 +242,26 @@ ExecutorService newSingl">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java创建和销毁线程还是非常消耗资源的,以前我们都是通过new一个Thread对象出来,java1.5以后推荐使用线程池的方式创建线程</p>
-<h2 id="Executors类"><a href="#Executors类" class="headerlink" title="Executors类"></a>Executors类</h2><p>java通过Executors类的静态方法创建线程池</p>
-<ol>
-<li>ExecutorService newFixedThreadPool(int nThreads):创建一个可重用的/具有固定数量的线程池</li>
-<li>ExecutorService newSingleThreadExecutor():创建一个线程池</li>
-<li>ExecutorService newCachedThreadPool():创建一个具有缓存功能的线程池，系统根据需要创建线程，这些线程将会被缓存在线程池中。</li>
-<li>ScheduledExecutorService newSingleThreadScheduledExecutor()</li>
-<li>ScheduledExecutorService newScheduledThreadPool(int corePoolSize)</li>
-</ol>
+        <p>mongo的索引种类很多,这也是mongo查询效率高的很大原因</p>
+<h2 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h2><ul>
+<li>基本索引</li>
+<li>Text索引</li>
+<li>Geo索引(地理位置)<br>Geo索引相对比较多,比较复杂,其中还涉及到是普通的点还是GeoJsonPoint,而且各个command的单位也不一样,可能会在续集里面写到</li>
+</ul>
 <a id="more"></a>
-<h2 id="ExecutorService"><a href="#ExecutorService" class="headerlink" title="ExecutorService"></a>ExecutorService</h2><p>ExecutorService就代表一个线程池,程序只要传入一个Runnable或Callable的对象,该线程就会尽快的执行该任务.<br>主要有submit方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt;	<span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span> </span><br><span class="line"> Future&lt;?&gt;	    <span class="title">submit</span><span class="params">(Runnable task)</span> </span><br><span class="line">&lt;T&gt; Future&lt;T&gt;	<span class="title">submit</span><span class="params">(Runnable task, T result)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>Future主要用到的方法为get,如果线程还未执行完成,则阻塞等待执行完成后,再返回结果<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFuture</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newSingleThreadExecutor();</span><br><span class="line"><span class="comment">//        ExecutorService executorService = Executors.newFixedThreadPool(10);</span></span><br><span class="line">        Future&lt;String&gt; future = executorService.submit(<span class="keyword">new</span> Callable&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"wanghao"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(<span class="string">"start....."</span>);</span><br><span class="line">        Thread.sleep(<span class="number">10000</span>);</span><br><span class="line">        String name = future.get();</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        <span class="keyword">assert</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="ScheduleExecutorService"><a href="#ScheduleExecutorService" class="headerlink" title="ScheduleExecutorService"></a>ScheduleExecutorService</h2><p>延迟,或者定时处理一些任务</p>
-<h2 id="附录A-Runnable和Callable的区别"><a href="#附录A-Runnable和Callable的区别" class="headerlink" title="附录A-Runnable和Callable的区别"></a>附录A-Runnable和Callable的区别</h2><p>Runnable只有一个run方法,没有返回值,Callable只有一个call方法,有返回值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">       <span class="comment">/**</span><br><span class="line">        * Computes a result, or throws an exception if unable to do so.</span><br><span class="line">        *</span><br><span class="line">        * <span class="doctag">@return</span> computed result</span><br><span class="line">        * <span class="doctag">@throws</span> Exception if unable to compute a result</span><br><span class="line">        */</span></span><br><span class="line">       <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="常见索引"><a href="#常见索引" class="headerlink" title="常见索引"></a>常见索引</h2><ul>
+<li>主键索引 Default</li>
+<li>单间索引 Single</li>
+<li>复合索引 Compound</li>
+<li>多键索引 MultiKey</li>
+<li>地理位置索引 Geo</li>
+<li>全文索引 Text</li>
+</ul>
+<h2 id="索引的属性"><a href="#索引的属性" class="headerlink" title="索引的属性"></a>索引的属性</h2><ul>
+<li>Unique 唯一性,默认值是null,即不允许插入两条为null的数据。</li>
+<li>Sparse 稀疏性(这个我还不怎么了解)</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jianshu.com/p/3483918ce28c" target="_blank" rel="external">mongo索引探究(-)</a></p>
 
       
     </div>
@@ -265,18 +271,18 @@ ExecutorService newSingl">
     
 <nav id="article-nav">
   
-    <a href="/2016/07/26/mongo-index/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/07/26/mongo-auth/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          mongo索引(-)
+          mongo用户认证
         
       </div>
     </a>
   
   
-    <a href="/2016/07/24/go-vendor/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">go-vendor</div>
+    <a href="/2016/07/24/java-concurrent/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java-concurrent</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -311,7 +317,7 @@ ExecutorService newSingl">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java-concurrent" data-title="Java-concurrent" data-url="http://yoursite.com/2016/07/24/java-concurrent/"></div>
+	<div class="ds-thread" data-thread-key="mongo-index" data-title="mongo索引(-)" data-url="http://yoursite.com/2016/07/26/mongo-index/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
