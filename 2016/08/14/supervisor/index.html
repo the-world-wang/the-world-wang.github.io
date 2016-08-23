@@ -14,11 +14,13 @@
 <meta property="og:site_name" content="the-world-wang">
 <meta property="og:description" content="关于supervisor是一个用python写的进程管理工具，可以很方便的用来启动、重启、关闭进程。supervisor是C/S模型的程序，supervisord是server端，supervisorctl是client端。
 安装官网上提供了n种安装方式，但是release版只支持python 2.x，暂时还不支持python 3.x，4.0以后会支持。">
-<meta property="og:updated_time" content="2016-08-14T05:17:10.000Z">
+<meta property="og:image" content="http://yoursite.com/images/supervisor-1.png">
+<meta property="og:updated_time" content="2016-08-14T05:24:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="supervisor">
 <meta name="twitter:description" content="关于supervisor是一个用python写的进程管理工具，可以很方便的用来启动、重启、关闭进程。supervisor是C/S模型的程序，supervisord是server端，supervisorctl是client端。
 安装官网上提供了n种安装方式，但是release版只支持python 2.x，暂时还不支持python 3.x，4.0以后会支持。">
+<meta name="twitter:image" content="http://yoursite.com/images/supervisor-1.png">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -233,20 +235,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="关于supervisor"><a href="#关于supervisor" class="headerlink" title="关于supervisor"></a>关于supervisor</h2><p>是一个用python写的进程管理工具，可以很方便的用来启动、重启、关闭进程。<br>supervisor是C/S模型的程序，supervisord是server端，supervisorctl是client端。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>官网上提供了n种安装方式，但是release版只支持python 2.x，暂时还不支持python 3.x，4.0以后会支持。</p>
+        <h1 id="关于supervisor"><a href="#关于supervisor" class="headerlink" title="关于supervisor"></a>关于supervisor</h1><p>是一个用python写的进程管理工具，可以很方便的用来启动、重启、关闭进程。<br>supervisor是C/S模型的程序，supervisord是server端，supervisorctl是client端。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>官网上提供了n种安装方式，但是release版只支持python 2.x，暂时还不支持python 3.x，4.0以后会支持。</p>
 <a id="more"></a>
 <blockquote>
 <p>Supervisor does not work on Python 3</p>
 <p>Supervisor 4.0 (unreleased) is planned to work under Python 2 version 2.6 or greater and Python 3 version 3.2 or greater</p>
 </blockquote>
-<p>如果是python 2.x，只要用<code>pip install supervisor</code>安装就行了。<br>我的是python 3.5，所以只能下载源码来安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">unzip supervisor-master</span><br><span class="line">如果unzip命令没有，可以通过apt-get安装</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">解压后得到的目名录结构如下</span><br><span class="line">![](/images/supervisor-1.png)</span><br><span class="line">`python setup.py install` 安装就行了，默认安装在`/usr/local/bin/supervisord`</span><br><span class="line"></span><br><span class="line">这种方式安装可能不会自动添加配置文件，所以需要我们自己编写配置文件，好在提供了`echo_supervisord_conf`命令。</span><br><span class="line"></span><br><span class="line">运行</span><br></pre></td></tr></table></figure></p>
-<p>sudo echo_supervisord_conf &gt; /etc/suspervisord.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; 以非root用户运行上面的命令可能失败，因为 &gt;重定向符号 也是bash命令，echo_supervisord_conf拥有了sudo权限，但是 &gt; 并没有sudo权限。</span><br><span class="line"></span><br><span class="line">## 启动</span><br><span class="line">### server</span><br><span class="line">`supervisord -c /etc/supervisord.conf`</span><br><span class="line"></span><br><span class="line">### client</span><br><span class="line">`supervisorctl -c /etc/supervisord.conf`</span><br></pre></td></tr></table></figure></p>
-<p>supervisorctl status<br>supervisorctl stop usercenter<br>supervisorctl start usercenter<br>supervisorctl restart usercenter<br>supervisorctl reread<br>supervisorctl update    # 修改过配置文件后需要update一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 配置</span><br><span class="line">可以把所有管理的进程都放在/etc/supervisord.conf里面，但是并不推荐这样做，我们通过include将各个配置文件组合。</span><br></pre></td></tr></table></figure></p>
-<p>[include]<br>files = /etc/supervisor/*.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 附录-Python模块安装的常用方式</span><br><span class="line">### 单文件模块</span><br><span class="line">直接把文件拷贝到 $python_dir/Lib</span><br><span class="line"></span><br><span class="line">### 多文件模块</span><br><span class="line">下载模块包，进行解压，进入模块文件夹，执行：</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure></p>
-<p>% python setup.py build     #编译<br>% python setup.py install    #安装<br>% python setup.py sdist      #制作分发包<br>```</p>
-<h3 id="easy-install方式"><a href="#easy-install方式" class="headerlink" title="easy_install方式"></a>easy_install方式</h3><p>pip install<br>pip install -U<br>pip uninstall<br>pip search</p>
-<h3 id="pip方式"><a href="#pip方式" class="headerlink" title="pip方式"></a>pip方式</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">使用supervisor管理进程</a></p>
+<h3 id="step-1-下载并解压"><a href="#step-1-下载并解压" class="headerlink" title="step-1 下载并解压"></a>step-1 下载并解压</h3><p>如果是python 2.x，只要用<code>pip install supervisor</code>安装就行了。<br>我的是python 3.5，所以只能下载源码来安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip supervisor-master</span><br><span class="line">如果unzip命令没有，可以通过apt-get安装</span><br></pre></td></tr></table></figure></p>
+<p>解压后得到的目名录结构如下<br><img src="/images/supervisor-1.png" alt=""></p>
+<h3 id="step-2-安装"><a href="#step-2-安装" class="headerlink" title="step-2 安装"></a>step-2 安装</h3><p><code>python setup.py install</code> 安装就行了，默认安装在<code>/usr/local/bin/supervisord</code></p>
+<h3 id="step-3-配置"><a href="#step-3-配置" class="headerlink" title="step-3 配置"></a>step-3 配置</h3><p>这种方式安装可能不会自动添加配置文件，所以需要我们自己编写配置文件，好在提供了<code>echo_supervisord_conf</code>命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo echo_supervisord_conf &gt; /etc/suspervisord.conf</span><br><span class="line">以非root用户运行上面的命令可能失败，因为 &gt;重定向符号 也是bash命令，echo_supervisord_conf拥有了sudo权限，但是 &gt; 并没有sudo权限。</span><br></pre></td></tr></table></figure></p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><p><code>supervisord -c /etc/supervisord.conf</code></p>
+<h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><p><code>supervisorctl -c /etc/supervisord.conf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl status</span><br><span class="line">supervisorctl stop usercenter</span><br><span class="line">supervisorctl start usercenter</span><br><span class="line">supervisorctl restart usercenter</span><br><span class="line">supervisorctl reread</span><br><span class="line">supervisorctl update	# 修改过配置文件后需要update一下</span><br></pre></td></tr></table></figure></p>
+<h1 id="program配置"><a href="#program配置" class="headerlink" title="program配置"></a>program配置</h1><p>可以把所有管理的进程都放在/etc/supervisord.conf里面，但是并不推荐这样做，我们通过include将各个配置文件组合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[include]</span><br><span class="line">files = /etc/supervisor/*.conf</span><br></pre></td></tr></table></figure></p>
+<h1 id="附录-Python模块安装的常用方式"><a href="#附录-Python模块安装的常用方式" class="headerlink" title="附录-Python模块安装的常用方式"></a>附录-Python模块安装的常用方式</h1><h2 id="单文件模块"><a href="#单文件模块" class="headerlink" title="单文件模块"></a>单文件模块</h2><p>直接把文件拷贝到 $python_dir/Lib</p>
+<h2 id="多文件模块"><a href="#多文件模块" class="headerlink" title="多文件模块"></a>多文件模块</h2><p>下载模块包，进行解压，进入模块文件夹，执行：<br>python setup.py install<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python setup.py build     #编译</span><br><span class="line">python setup.py install    #安装</span><br><span class="line">python setup.py sdist      #制作分发包</span><br></pre></td></tr></table></figure></p>
+<h2 id="easy-install方式"><a href="#easy-install方式" class="headerlink" title="easy_install方式"></a>easy_install方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install</span><br><span class="line">pip install -U</span><br><span class="line">pip uninstall</span><br><span class="line">pip search</span><br></pre></td></tr></table></figure>
+<h2 id="pip方式"><a href="#pip方式" class="headerlink" title="pip方式"></a>pip方式</h2><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">使用supervisor管理进程</a></p>
 
       
     </div>
@@ -255,6 +261,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/08/14/asymmetric/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          不对称加密算法
+        
+      </div>
+    </a>
   
   
     <a href="/2016/08/14/week-1/" id="article-nav-older" class="article-nav-link-wrap">

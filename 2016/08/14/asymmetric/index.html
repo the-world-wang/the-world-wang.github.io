@@ -4,24 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>go-vendor | the-world-wang</title>
+  <title>不对称加密算法 | the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.不过之前的基础比较薄弱,很多知识没有系统今天就说一下golang的包管理机制.
-为何要进行包管理GOPATH切换go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.在多个GOPATH的情况下,go get默认安装到第一个路径下.
-缺乏依赖版本直接依赖源码,没有一个明确的版本标识">
+  <meta name="description" content="不对称加密之前一直搞不懂不对称加密是的流程，现在搞清楚了一点。相比于对称加密，不对称加密有公钥和私钥之分。公钥可以公开，私钥不能公开。具体流程可如下：
+
+甲生成公钥和私钥，并将公钥分享给乙
+乙利用公钥加密信息，发送给甲
+甲利用私钥解密得到明文甲向乙发送信息反之。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="go-vendor">
-<meta property="og:url" content="http://yoursite.com/2016/07/24/go-vendor/index.html">
+<meta property="og:title" content="不对称加密算法">
+<meta property="og:url" content="http://yoursite.com/2016/08/14/asymmetric/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description" content="之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.不过之前的基础比较薄弱,很多知识没有系统今天就说一下golang的包管理机制.
-为何要进行包管理GOPATH切换go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.在多个GOPATH的情况下,go get默认安装到第一个路径下.
-缺乏依赖版本直接依赖源码,没有一个明确的版本标识">
-<meta property="og:updated_time" content="2016-08-17T14:06:36.000Z">
+<meta property="og:description" content="不对称加密之前一直搞不懂不对称加密是的流程，现在搞清楚了一点。相比于对称加密，不对称加密有公钥和私钥之分。公钥可以公开，私钥不能公开。具体流程可如下：
+
+甲生成公钥和私钥，并将公钥分享给乙
+乙利用公钥加密信息，发送给甲
+甲利用私钥解密得到明文甲向乙发送信息反之。">
+<meta property="og:updated_time" content="2016-08-14T06:27:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="go-vendor">
-<meta name="twitter:description" content="之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.不过之前的基础比较薄弱,很多知识没有系统今天就说一下golang的包管理机制.
-为何要进行包管理GOPATH切换go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.在多个GOPATH的情况下,go get默认安装到第一个路径下.
-缺乏依赖版本直接依赖源码,没有一个明确的版本标识">
+<meta name="twitter:title" content="不对称加密算法">
+<meta name="twitter:description" content="不对称加密之前一直搞不懂不对称加密是的流程，现在搞清楚了一点。相比于对称加密，不对称加密有公钥和私钥之分。公钥可以公开，私钥不能公开。具体流程可如下：
+
+甲生成公钥和私钥，并将公钥分享给乙
+乙利用公钥加密信息，发送给甲
+甲利用私钥解密得到明文甲向乙发送信息反之。">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -203,11 +209,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-go-vendor" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-asymmetric" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/24/go-vendor/" class="article-date">
-  	<time datetime="2016-07-24T12:44:21.000Z" itemprop="datePublished">2016-07-24</time>
+      <a href="/2016/08/14/asymmetric/" class="article-date">
+  	<time datetime="2016-08-14T05:29:34.000Z" itemprop="datePublished">2016-08-14</time>
 </a>
     </div>
   
@@ -220,7 +226,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      go-vendor
+      不对称加密算法
     </h1>
   
 
@@ -236,37 +242,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.<br>不过之前的基础比较薄弱,很多知识没有系统<br>今天就说一下golang的包管理机制.</p>
-<h2 id="为何要进行包管理"><a href="#为何要进行包管理" class="headerlink" title="为何要进行包管理"></a>为何要进行包管理</h2><h3 id="GOPATH切换"><a href="#GOPATH切换" class="headerlink" title="GOPATH切换"></a>GOPATH切换</h3><p>go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.<br>在多个GOPATH的情况下,<code>go get</code>默认安装到第一个路径下.</p>
-<h3 id="缺乏依赖版本"><a href="#缺乏依赖版本" class="headerlink" title="缺乏依赖版本"></a>缺乏依赖版本</h3><p>直接依赖源码,没有一个明确的版本标识,开发团队容易产生不一样的版本.(比如go get的时间不一样,就会产生不一样的版本)<br><a id="more"></a></p>
-<h2 id="go-vendor"><a href="#go-vendor" class="headerlink" title="go vendor"></a>go vendor</h2><p>vendor这个词翻译成”供应商”可能更满足他的应用场景.在vendor问世之前,一般都是通过第三方的包管理框架来实现,<br>比如godep(我看我们公司一个大神的源码就是用的这个工具)<br>go1.5默认不开启,需要设置<code>GO15VENDOREXPERIMENT=1</code>,而go1.6则默认开启</p>
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vendor</span><br><span class="line">    github.com/</span><br><span class="line">    golang.org/</span><br><span class="line">    vendor.json</span><br><span class="line">main.<span class="keyword">go</span></span><br></pre></td></tr></table></figure>
-<p>本项目的目录我觉得也可以放到vendor里面</p>
-<h3 id="如何保存文件到vendor里面"><a href="#如何保存文件到vendor里面" class="headerlink" title="如何保存文件到vendor里面"></a>如何保存文件到vendor里面</h3><p>官方并没有提供工具,可以通过 <a href="https://github.com/kardianos/govendor" target="_blank" rel="external"></a>这个工具完成</p>
-<blockquote>
-<p>使用<code>govendor</code>命令需要将$GOPATH/bin添加到PATH中</p>
-</blockquote>
-<p>其操作也比较简单</p>
+        <h1 id="不对称加密"><a href="#不对称加密" class="headerlink" title="不对称加密"></a>不对称加密</h1><p>之前一直搞不懂不对称加密是的流程，现在搞清楚了一点。相比于对称加密，不对称加密有公钥和私钥之分。公钥可以公开，私钥不能公开。<br>具体流程可如下：</p>
 <ol>
-<li>govendor init 初始化,即生成目录结构,并生成vendor.json</li>
-<li>govendor add gin 从GOPATH里面新增到项目目录</li>
-<li>govendor sync 根据verndor.json同步项目</li>
-<li>govendor fetch 新增或更新</li>
-<li>goverdor get 类似于<code>go get</code>,但是会复制一遍到本项目</li>
-</ol>
-<h2 id="附录-A-提供go-get翻墙的方法"><a href="#附录-A-提供go-get翻墙的方法" class="headerlink" title="附录-A 提供go get翻墙的方法"></a>附录-A 提供go get翻墙的方法</h2><ol>
-<li>开启socks5代理（比如shadowsocks)</li>
-<li><p>安装并启动polipo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. brew install polipo</span><br><span class="line">2. vi /usr/local/opt/polipo/homebrew.mxcl.polipo.plist</span><br><span class="line">3. 在&lt;array&gt; 和 &lt;/array&gt;之间添加一行：</span><br><span class="line">    &lt;string&gt;socksParentProxy=localhost:1080&lt;/string&gt;</span><br><span class="line">4. 执行命令： </span><br><span class="line">    (1) ln -sfv /usr/local/opt/polipo/*.plist ~/Library/LaunchAgents</span><br><span class="line">    (2) launchctl load ~/Library/LaunchAgents/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置终端环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http_proxy=127.0.0.1:8123</span><br><span class="line">https_proxy=127.0.0.1:8123</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置git的代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:8123</span><br><span class="line">git config --global https.proxy 127.0.0.1:8123</span><br></pre></td></tr></table></figure>
+<li>甲生成公钥和私钥，并将公钥分享给乙</li>
+<li>乙利用公钥加密信息，发送给甲</li>
+<li>甲利用私钥解密得到明文<br>甲向乙发送信息反之。<a id="more"></a>
 </li>
 </ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://winkyao.com/2016/04/07/golang-vendor/" target="_blank" rel="external">golang-vendor</a><br><a href="http://www.infoq.com/cn/articles/golang-package-management/" target="_blank" rel="external">golang的包管理之道</a><br><a href="http://blog.csdn.net/boydfd/article/details/50923577" target="_blank" rel="external">go get翻墙</a></p>
+<h1 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h1><blockquote>
+<p>一言以蔽之，数字签名就是将公钥密码反过来使用。签名者将讯息用私钥加密（这是一种反用，因为通常公钥密码中私钥用于解密），然后公布公钥;验证者使用公钥将加密讯息解密并比对消息（一般签名对象为消息的散列值。– 维基百科</p>
+</blockquote>
+<p>摘要：对需要传输的文本，做一个HASH计算，一般采用SHA1，SHA2来获得。<br>签名：使用私钥对需要传输的文本的摘要进行加密，得到的密文即被称为该次传输过程的签名。<br>签名验证：数据接收端，拿到传输文本，但是需要确认该文本是否就是发送发出的内容，中途是否曾经被篡改。因此拿自己持有的公钥对签名进行解密（密钥对中的一种密钥加密的数据必定能使用另一种密钥解密。），得到了文本的摘要，然后使用与发送方同样的HASH算法计算摘要值，再与解密得到的摘要做对比，发现二者完全一致，则说明文本没有被篡改过。</p>
+<h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p>SSH是一种网络协议，用于计算机之间登录。<br>早期计算机登录都是通过明文，比如FTP。一般我们常用的实现是<code>OpenSSH</code></p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh wanghao@host</span><br><span class="line">ssh host 缺省用户名时和本地用户名一致</span><br><span class="line">ssh -p 2222 wanghao@host 默认为22端口</span><br></pre></td></tr></table></figure>
+<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+<li>用户请求远程登录</li>
+<li>远程主机将自己的公钥返回</li>
+<li>用户输入密码后，通过公钥加密传递给远程主机</li>
+<li>远程主机利用私钥解密，密码匹配则认证成功</li>
+</ol>
+<h2 id="口令登录"><a href="#口令登录" class="headerlink" title="口令登录"></a>口令登录</h2><p>这是比较常用的登录方式。<br>用户第一次登录时，会提示是否需要记住远程主机的公钥，如果同意，则会将远程主机的公钥放置在<br><code>~/.ssh/known_hosts</code>中</p>
+<blockquote>
+<p>如果远程主机系统重装，则需要删除<code>known_hosts</code>中对应的记录。我遇到过2次，一次是更换了跳板机，另外一次remote换了一个系统。</p>
+</blockquote>
+<h2 id="公钥登录"><a href="#公钥登录" class="headerlink" title="公钥登录"></a>公钥登录</h2><p>口令登录比较麻烦，好在提供了公钥登录。</p>
+<ol>
+<li>ssh-keygen生成公钥<br>会在<code>~/.ssh</code>文件夹下生成2个文件：id_rsa和id_rsa.pub，前者是私钥，后者是公钥。</li>
+<li>ssh-copy-id上传公钥<br>上传完成后，公钥保存在<code>./ssh/authorized_keys</code>中<blockquote>
+<p>在mac上ssh-copy-id命令没有，需要通过<code>brew install ssh-copy-id</code>安装（其实我们一般常用的SSH实现是OpenSSH）</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">ssh原理及应用</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="external">数字签名是什么</a></li>
+<li><a href="http://codefine.co/1455.html" target="_blank" rel="external">公钥私钥加密解密数字证书数字签名详解</a></li>
+</ol>
 
       
     </div>
@@ -276,18 +287,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/07/24/java-concurrent/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Java-concurrent
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/24/hello/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2016/08/14/supervisor/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">supervisor</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -322,7 +324,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="go-vendor" data-title="go-vendor" data-url="http://yoursite.com/2016/07/24/go-vendor/"></div>
+	<div class="ds-thread" data-thread-key="asymmetric" data-title="不对称加密算法" data-url="http://yoursite.com/2016/08/14/asymmetric/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
