@@ -198,6 +198,277 @@
 
       <div class="body-wrap">
   
+    <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/23/maven/" class="article-date">
+  	<time datetime="2016-08-23T15:13:37.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/maven/">maven使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="运行main方法"><a href="#运行main方法" class="headerlink" title="运行main方法"></a>运行main方法</h1><p>Maven的exec插件允许你运行Java项目中的main方法。</p>
+<ol>
+<li><p>编译，exec执行时是不会为你编译代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn exec -DmainClass=&quot;com.example.Main&quot; -Dargs=&quot;arg0 arg1&quot; -Dexec.classpathScope=runtime</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mvn archetype:create</td>
+<td>创建maven项目</td>
+</tr>
+<tr>
+<td>mvn compile</td>
+<td>编译主程序代码，不会编译test代码。第一次运行会下载依赖</td>
+</tr>
+<tr>
+<td>mvn test-compile</td>
+<td>编译测试代码。主程序在classes下面，test在test-classes下面</td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://my.oschina.net/u/237209/blog/51976" target="_blank" rel="external">使用maven运行java的main方法</a></li>
+<li><a href="http://www.cnblogs.com/sunddenly/p/4341542.html" target="_blank" rel="external">maven常用命令</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-semver" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/23/semver/" class="article-date">
+  	<time datetime="2016-08-23T15:02:00.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/semver/">语义化版本 2.0</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ol>
+<li>主版本号：不兼容的API修改</li>
+<li>次版本号：向下兼容的功能新增</li>
+<li>修订号：向下兼容的bug修复<br>如 <code>1.2.3</code></li>
+</ol>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>禁止在数字前方补零，如<code>1.09.1</code></li>
+<li>1.9.1 -&gt; 1.10 -&gt; 1.11.0</li>
+<li>先行版本号：[0-9A-Za-z-]，常用的先行版本有：alpha，beta，rc，GA(稳定版)</li>
+<li>版本编译信息：先加上一个加号再加上一连串以句点分隔的标识符号来修饰，如：<code>1.0.0-alpha+001</code></li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://semver.org/" target="_blank" rel="external">语言化版本官网</a></li>
+<li><a href="https://github.com/zafarkhaja/jsemver" target="_blank" rel="external">java-semver实现</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-upload" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/23/upload/" class="article-date">
+  	<time datetime="2016-08-23T14:45:40.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/upload/">上传文件至服务器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h1><p>scp是security copy的简写，类似的命令有cp，区别在于cp只能用于本机拷贝而不能跨服务器，而且scp是加密的。</p>
+<ol>
+<li>命令格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp [参数] [原路径] [目标路径]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/23/upload/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-groovy" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/23/groovy/" class="article-date">
+  	<time datetime="2016-08-23T14:12:01.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/groovy/">groovy的一些坑</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用groovy也有一段时间了，此博客单纯为了记录平时遇到的坑，省的自己以后再google</p>
+<h1 id="String类型转换"><a href="#String类型转换" class="headerlink" title="String类型转换"></a>String类型转换</h1><p><code>String</code>可以通过以下方法，很方便的转换成对应的数据类型。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/23/groovy/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-asymmetric" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -550,132 +821,10 @@
 
 
   
-    <article id="post-go-vendor" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/07/24/go-vendor/" class="article-date">
-  	<time datetime="2016-07-24T12:44:21.000Z" itemprop="datePublished">2016-07-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/24/go-vendor/">go-vendor</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.<br>不过之前的基础比较薄弱,很多知识没有系统<br>今天就说一下golang的包管理机制.</p>
-<h2 id="为何要进行包管理"><a href="#为何要进行包管理" class="headerlink" title="为何要进行包管理"></a>为何要进行包管理</h2><h3 id="GOPATH切换"><a href="#GOPATH切换" class="headerlink" title="GOPATH切换"></a>GOPATH切换</h3><p>go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.<br>在多个GOPATH的情况下,<code>go get</code>默认安装到第一个路径下.</p>
-<h3 id="缺乏依赖版本"><a href="#缺乏依赖版本" class="headerlink" title="缺乏依赖版本"></a>缺乏依赖版本</h3><p>直接依赖源码,没有一个明确的版本标识,开发团队容易产生不一样的版本.(比如go get的时间不一样,就会产生不一样的版本)<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/24/go-vendor/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/24/hello/" class="article-date">
-  	<time datetime="2016-07-24T10:09:48.000Z" itemprop="datePublished">2016-07-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/24/hello/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="最近"><a href="#最近" class="headerlink" title="最近"></a>最近</h2><p>毕业也有一个月了,最近写的东西有点蛋疼,又回到了Java的怀抱.我最近一直将代码写的漂亮,将api写的可拓展,我发现这里面有很大的学问.<br>我们一直试图去学习新技术,数据库用mongo,前端用React,部署用docker,却发现依旧没能解决我们遇到的问题.<br>转了一圈才发现,其实是我们代码写的越来越差了.<br>后来我发现自己的记性越来越差了,刚看的东西又记不住了</p>
-<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><p>于是我计划将之前学的一些东西都记录下来</p>
-<table>
-<thead>
-<tr>
-<th>时间</th>
-<th style="text-align:center">知识点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2016-07-24</td>
-<td style="text-align:center">git操作</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">

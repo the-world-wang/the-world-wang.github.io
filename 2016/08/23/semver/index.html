@@ -4,17 +4,45 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/8 | the-world-wang</title>
+  <title>语义化版本 2.0 | the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="the-world-wang">
-<meta property="og:url" content="http://yoursite.com/archives/2016/08/index.html">
+  <meta name="description" content="摘要
+主版本号：不兼容的API修改
+次版本号：向下兼容的功能新增
+修订号：向下兼容的bug修复如 1.2.3
+
+问题
+禁止在数字前方补零，如1.09.1
+1.9.1 -&amp;gt; 1.10 -&amp;gt; 1.11.0
+先行版本号：[0-9A-Za-z-]，常用的先行版本有：alpha，beta，rc，GA(稳定版)
+版本编译信息：先加上一个加号再加上一连串以句点分隔的标识符号来修饰，如：1.0.0-a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语义化版本 2.0">
+<meta property="og:url" content="http://yoursite.com/2016/08/23/semver/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description">
+<meta property="og:description" content="摘要
+主版本号：不兼容的API修改
+次版本号：向下兼容的功能新增
+修订号：向下兼容的bug修复如 1.2.3
+
+问题
+禁止在数字前方补零，如1.09.1
+1.9.1 -&amp;gt; 1.10 -&amp;gt; 1.11.0
+先行版本号：[0-9A-Za-z-]，常用的先行版本有：alpha，beta，rc，GA(稳定版)
+版本编译信息：先加上一个加号再加上一连串以句点分隔的标识符号来修饰，如：1.0.0-a">
+<meta property="og:updated_time" content="2016-08-23T15:11:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="the-world-wang">
-<meta name="twitter:description">
+<meta name="twitter:title" content="语义化版本 2.0">
+<meta name="twitter:description" content="摘要
+主版本号：不兼容的API修改
+次版本号：向下兼容的功能新增
+修订号：向下兼容的bug修复如 1.2.3
+
+问题
+禁止在数字前方补零，如1.09.1
+1.9.1 -&amp;gt; 1.10 -&amp;gt; 1.11.0
+先行版本号：[0-9A-Za-z-]，常用的先行版本有：alpha，beta，rc，GA(稳定版)
+版本编译信息：先加上一个加号再加上一连串以句点分隔的标识符号来修饰，如：1.0.0-a">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -196,211 +224,128 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-semver" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/08/23/semver/" class="article-date">
+  	<time datetime="2016-08-23T15:02:00.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      语义化版本 2.0
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/23/maven/" class="archive-article-date">
-  	<time datetime="2016-08-23T15:13:37.000Z" itemprop="datePublished">Aug 23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/23/maven/">maven使用</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ol>
+<li>主版本号：不兼容的API修改</li>
+<li>次版本号：向下兼容的功能新增</li>
+<li>修订号：向下兼容的bug修复<br>如 <code>1.2.3</code></li>
+</ol>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>禁止在数字前方补零，如<code>1.09.1</code></li>
+<li>1.9.1 -&gt; 1.10 -&gt; 1.11.0</li>
+<li>先行版本号：[0-9A-Za-z-]，常用的先行版本有：alpha，beta，rc，GA(稳定版)</li>
+<li>版本编译信息：先加上一个加号再加上一连串以句点分隔的标识符号来修饰，如：<code>1.0.0-alpha+001</code></li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://semver.org/" target="_blank" rel="external">语言化版本官网</a></li>
+<li><a href="https://github.com/zafarkhaja/jsemver" target="_blank" rel="external">java-semver实现</a></li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/23/maven/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          maven使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/23/upload/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">上传文件至服务器</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/23/semver/" class="archive-article-date">
-  	<time datetime="2016-08-23T15:02:00.000Z" itemprop="datePublished">Aug 23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/23/semver/">语义化版本 2.0</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/23/upload/" class="archive-article-date">
-  	<time datetime="2016-08-23T14:45:40.000Z" itemprop="datePublished">Aug 23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/23/upload/">上传文件至服务器</a>
-    </h1>
-  
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/23/groovy/" class="archive-article-date">
-  	<time datetime="2016-08-23T14:12:01.000Z" itemprop="datePublished">Aug 23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/23/groovy/">groovy的一些坑</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/14/asymmetric/" class="archive-article-date">
-  	<time datetime="2016-08-14T05:29:34.000Z" itemprop="datePublished">Aug 14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/14/asymmetric/">不对称加密算法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/14/supervisor/" class="archive-article-date">
-  	<time datetime="2016-08-14T04:24:38.000Z" itemprop="datePublished">Aug 14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/14/supervisor/">supervisor</a>
-    </h1>
-  
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="semver" data-title="语义化版本 2.0" data-url="http://yoursite.com/2016/08/23/semver/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/14/week-1/" class="archive-article-date">
-  	<time datetime="2016-08-14T04:15:36.000Z" itemprop="datePublished">Aug 14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/14/week-1/">周记</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 </div>
       <footer id="footer">
@@ -426,8 +371,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
