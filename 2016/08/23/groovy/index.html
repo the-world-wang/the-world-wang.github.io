@@ -14,7 +14,7 @@ String类型转换String可以通过以下方法，很方便的转换成对应�
 <meta property="og:site_name" content="the-world-wang">
 <meta property="og:description" content="用groovy也有一段时间了，此博客单纯为了记录平时遇到的坑，省的自己以后再google
 String类型转换String可以通过以下方法，很方便的转换成对应的数据类型。">
-<meta property="og:updated_time" content="2016-08-23T14:43:05.000Z">
+<meta property="og:updated_time" content="2016-09-03T12:45:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="groovy的一些坑">
 <meta name="twitter:description" content="用groovy也有一段时间了，此博客单纯为了记录平时遇到的坑，省的自己以后再google
@@ -81,7 +81,7 @@ String类型转换String可以通过以下方法，很方便的转换成对应�
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -118,7 +118,7 @@ String类型转换String可以通过以下方法，很方便的转换成对应�
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a>
 					</div>
 				</section>
 				
@@ -244,7 +244,7 @@ String类型转换String可以通过以下方法，很方便的转换成对应�
 <li>toCharacter()</li>
 <li>toDouble()</li>
 <li>toFloat()</li>
-<li>toList() </li>
+<li>toList()</li>
 <li>toLong()</li>
 </ol>
 <h1 id="log"><a href="#log" class="headerlink" title="log"></a>log</h1><ol>
@@ -268,11 +268,24 @@ String类型转换String可以通过以下方法，很方便的转换成对应�
 <p>map<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> testMap = [<span class="string">'cat'</span>:<span class="string">'Meow'</span>, <span class="string">'dog'</span>:<span class="string">'Woof'</span>]</span><br><span class="line">testMap.each &#123; animal, animalSound -&gt;</span><br><span class="line">    println <span class="string">"$&#123;animal&#125; has the sound $&#123;animalSound&#125;"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Date-Format和Parse"><a href="#Date-Format和Parse" class="headerlink" title="Date Format和Parse"></a>Date Format和Parse</h2><h3 id="format"><a href="#format" class="headerlink" title="format"></a>format</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">now.format(<span class="string">"yyyy-MMM-dd HH:mm:ss a"</span>)</span><br><span class="line">Date.getDateString(), Date.getTimeString(), and Date.getDateTimeString()</span><br><span class="line">分别代表 DateFormat.SHORT 和 DateFormat.MEDIUM</span><br></pre></td></tr></table></figure>
 <h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date.parseToStringDate(nowString)</span><br><span class="line">now.toTimestamp()</span><br></pre></td></tr></table></figure>
+<h1 id="ToString-Equals"><a href="#ToString-Equals" class="headerlink" title="ToString/Equals"></a>ToString/Equals</h1><p>因为groovy对JavaBean有天生的支持，如果你使用的是java，其实可以使用<a href="http://jnb.ociweb.com/jnb/jnbJan2010.html" target="_blank" rel="external">Lombok</a>，也支持getter/setter/toString等方法的注解。</p>
+<h2 id="ToString"><a href="#ToString" class="headerlink" title="ToString"></a>ToString</h2><p>toString这个注解还是挺有用的。关于field和property其实也要稍微注意一下。property是JavaBean的概念，而field只是java一个普通的域。<br>常用的属性是</p>
+<ul>
+<li>includeNames：包含key值</li>
+<li>includeSuperProperties：包含父类的属性</li>
+</ul>
+<blockquote>
+<p>@ToString(includeNames = true, includePackage = false, includeSuperProperties = true)</p>
+</blockquote>
+<h2 id="EqualsAndHashCode"><a href="#EqualsAndHashCode" class="headerlink" title="EqualsAndHashCode"></a>EqualsAndHashCode</h2><p>用法和@ToString类似</p>
+<h2 id="TupleConstructor"><a href="#TupleConstructor" class="headerlink" title="TupleConstructor"></a>TupleConstructor</h2><p>这个其实就是能够简略构造函数的，而不用每次都指明属性。</p>
+<h2 id="Canonical"><a href="#Canonical" class="headerlink" title="Canonical"></a>Canonical</h2><p>统一以上3个注解</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a href="http://www.javaworld.com/article/2074117/core-java/easy-groovy-logger-injection-and-log-guarding.html" target="_blank" rel="external">groovy-log</a></li>
 <li><a href="http://tongyi121.iteye.com/blog/295764" target="_blank" rel="external">groovy的5种特殊运算符</a></li>
 <li><a href="http://grails.asia/groovy-each-examples" target="_blank" rel="external">groovy-each-example</a></li>
 <li><a href="http://www.javaworld.com/article/2074678/core-java/groovy-jdk--gdk---date-and-calendar.html" target="_blank" rel="external">groovy-date</a></li>
+<li><a href="http://www.jianshu.com/p/a9ba2a318fe2" target="_blank" rel="external">关于Canonical和它的三个小弟</a></li>
 </ol>
 
       

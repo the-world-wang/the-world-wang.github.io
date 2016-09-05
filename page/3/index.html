@@ -4,24 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>上传文件至服务器 | the-world-wang</title>
+  <title>the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="scpscp是security copy的简写，类似的命令有cp，区别在于cp只能用于本机拷贝而不能跨服务器，而且scp是加密的。
-
-命令格式1scp [参数] [原路径] [目标路径]">
-<meta property="og:type" content="article">
-<meta property="og:title" content="上传文件至服务器">
-<meta property="og:url" content="http://yoursite.com/2016/08/23/upload/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="the-world-wang">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description" content="scpscp是security copy的简写，类似的命令有cp，区别在于cp只能用于本机拷贝而不能跨服务器，而且scp是加密的。
-
-命令格式1scp [参数] [原路径] [目标路径]">
-<meta property="og:updated_time" content="2016-08-23T14:59:44.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="上传文件至服务器">
-<meta name="twitter:description" content="scpscp是security copy的简写，类似的命令有cp，区别在于cp只能用于本机拷贝而不能跨服务器，而且scp是加密的。
-
-命令格式1scp [参数] [原路径] [目标路径]">
+<meta name="twitter:title" content="the-world-wang">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -203,11 +196,13 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-upload" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/23/upload/" class="article-date">
-  	<time datetime="2016-08-23T14:45:40.000Z" itemprop="datePublished">2016-08-23</time>
+      <a href="/2016/07/24/hello/" class="article-date">
+  	<time datetime="2016-07-24T10:09:48.000Z" itemprop="datePublished">2016-07-24</time>
 </a>
     </div>
   
@@ -219,131 +214,63 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      上传文件至服务器
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/24/hello/">Hello World</a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h1><p>scp是security copy的简写，类似的命令有cp，区别在于cp只能用于本机拷贝而不能跨服务器，而且scp是加密的。</p>
-<ol>
-<li>命令格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp [参数] [原路径] [目标路径]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<a id="more"></a>
-<ol>
-<li><p>复制文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp localfile username@host:/app/bin/...</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复制目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r localfile username@host:/app/bin/...</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r username@host:/opt/soft/mongodb /opt/soft/</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="跳板机"><a href="#跳板机" class="headerlink" title="跳板机"></a>跳板机</h1><p>登录远程服务器如果需要经过跳板机，可以使用<code>zssh</code></p>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zssh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>登录<br>登录命令和<code>SSH</code>相同</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zssh usename@host</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上传文件<br>mac <code>control+@</code>进入上传文件的模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz filename  // 把filename传到服务器上当前目录</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="http://jser.me/2014/09/11/%E4%BD%BF%E7%94%A8%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%A0%E6%96%87%E4%BB%B6.html" target="_blank" rel="external">使用跳板机的环境中与服务器传文件</a></li>
-<li><a href="http://www.cnblogs.com/peida/archive/2013/03/15/2960802.html" target="_blank" rel="external">每天一个linux命令60-scp</a></li>
-</ol>
+        <h2 id="最近"><a href="#最近" class="headerlink" title="最近"></a>最近</h2><p>毕业也有一个月了,最近写的东西有点蛋疼,又回到了Java的怀抱.我最近一直将代码写的漂亮,将api写的可拓展,我发现这里面有很大的学问.<br>我们一直试图去学习新技术,数据库用mongo,前端用React,部署用docker,却发现依旧没能解决我们遇到的问题.<br>转了一圈才发现,其实是我们代码写的越来越差了.<br>后来我发现自己的记性越来越差了,刚看的东西又记不住了</p>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><p>于是我计划将之前学的一些东西都记录下来</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th style="text-align:center">知识点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016-07-24</td>
+<td style="text-align:center">git操作</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
     
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/08/23/semver/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          语义化版本 2.0
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/08/23/groovy/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">groovy的一些坑</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+    <div class="article-info article-info-index">
+      
+      
+      
 
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
   
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
 
 
 
 
 
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="upload" data-title="上传文件至服务器" data-url="http://yoursite.com/2016/08/23/upload/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
-
-
-
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -367,8 +294,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

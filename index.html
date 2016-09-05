@@ -77,7 +77,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a>
 					</div>
 				</section>
 				
@@ -197,6 +197,722 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-mongo-aggregation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/03/mongo-aggregation/" class="article-date">
+  	<time datetime="2016-09-03T13:24:07.000Z" itemprop="datePublished">2016-09-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/03/mongo-aggregation/">mongo聚合操作</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>mongo对自己的定义就是<code>Aggregation Pipeline Operators</code>，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。<br><img src="/images/aggregation-pipeline.png" alt=""></p>
+<h1 id="聚合框架"><a href="#聚合框架" class="headerlink" title="聚合框架"></a>聚合框架</h1><h2 id="project投影"><a href="#project投影" class="headerlink" title="project投影"></a>project投影</h2><p>投影，类似于SQL中的select<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.foo.aggregate(&#123;</span><br><span class="line">	$project:&#123;</span><br><span class="line">		<span class="string">"_id"</span>:<span class="number">0</span>,</span><br><span class="line">		<span class="string">"title"</span>:<span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>其中1表示投影，0表示不投影</li>
+<li>还可以重命名字段，用$title代表原字段</li>
+</ul>
+<h2 id="group"><a href="#group" class="headerlink" title="group"></a>group</h2><p>根据特定字段进行分组。如果选定好要分组的字段后，传给_id字段。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"$group"</span> : &#123;</span><br><span class="line">		<span class="string">"_id"</span> : &#123;</span><br><span class="line">			<span class="string">"month"</span> : &#123;</span><br><span class="line">				<span class="string">"$month"</span> : <span class="string">"$date"</span></span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="string">"day"</span> : &#123;</span><br><span class="line">				<span class="string">"$dayOfMonth"</span> : <span class="string">"$date"</span></span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="string">"year"</span> : &#123;</span><br><span class="line">				<span class="string">"$year"</span> : <span class="string">"$date"</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">"totalPrice"</span> : &#123;</span><br><span class="line">			<span class="string">"$sum"</span> : &#123;</span><br><span class="line">				<span class="string">"$multiply"</span> : [</span><br><span class="line">					<span class="string">"$price"</span>,</span><br><span class="line">					<span class="string">"$quantity"</span></span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">"averageQuantity"</span> : &#123;</span><br><span class="line">			<span class="string">"$avg"</span> : <span class="string">"$quantity"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">"count"</span> : &#123;</span><br><span class="line">			<span class="string">"$sum"</span> : <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="match"><a href="#match" class="headerlink" title="match"></a>match</h2><p>可以使用<code>$gt</code>,<code>$in</code>等，感觉放在前面相当于<code>where</code>，放在后面相当于<code>having</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"$match"</span>: &#123;<span class="string">"title"</span>: <span class="string">"good"</span>&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="lookup-join"><a href="#lookup-join" class="headerlink" title="lookup join"></a>lookup join</h2><p>mongo 3.2后开始支持类join，相当于左外连接，但是这个不支持DBref<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   $lookup:</span><br><span class="line">     &#123;</span><br><span class="line">       <span class="keyword">from</span>: &lt;collection to join&gt;,</span><br><span class="line">       localField: &lt;field from the input documents&gt;,</span><br><span class="line">       foreignField: &lt;field from the documents of the "from" collection&gt;,</span><br><span class="line">       as: &lt;output array field&gt;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="sort排序"><a href="#sort排序" class="headerlink" title="sort排序"></a>sort排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.users.aggregate(&#123; </span><br><span class="line">	$sort : &#123; </span><br><span class="line">		age : <span class="number">-1</span>, </span><br><span class="line">		posts: <span class="number">1</span> </span><br><span class="line">	&#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="limit-skip：分页"><a href="#limit-skip：分页" class="headerlink" title="limit/skip：分页"></a>limit/skip：分页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.users.aggregate(</span><br><span class="line">	&#123;$skip : 5&#125;,</span><br><span class="line">	&#123;$limit : 10&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p>这个还不是很熟，有时间再写。</p>
+<h1 id="单一目的的聚合操作"><a href="#单一目的的聚合操作" class="headerlink" title="单一目的的聚合操作"></a>单一目的的聚合操作</h1><ol>
+<li>count：计算数量</li>
+<li>group：这个功能比<code>$group</code>还要多</li>
+<li>distinct：类似于SQL中的distinct<br><img src="/images/aggregation-distinct.png" alt=""></li>
+</ol>
+<h1 id="SQL映射表"><a href="#SQL映射表" class="headerlink" title="SQL映射表"></a>SQL映射表</h1><table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>Mongo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WHERE</td>
+<td>$match</td>
+</tr>
+<tr>
+<td>GROUP BY</td>
+<td>$group</td>
+</tr>
+<tr>
+<td>HAVING</td>
+<td>$match</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>$project</td>
+</tr>
+<tr>
+<td>ORDER BY</td>
+<td>$sort</td>
+</tr>
+<tr>
+<td>LIMIT</td>
+<td>$limit</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>$sum</td>
+</tr>
+<tr>
+<td>COUNT()</td>
+<td>$sum</td>
+</tr>
+<tr>
+<td>join</td>
+<td>$lookup</td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://docs.mongodb.com/manual/aggregation/" target="_blank" rel="external">mongo-aggregation</a></li>
+<li><a href="http://beginman.cn/mongodb/2016/01/08/mongo-aggregation/" target="_blank" rel="external">Mongodb聚合</a></li>
+<li><a href="http://blog.csdn.net/zhangzhebjut/article/details/16848045" target="_blank" rel="external">MongoDB 聚合管道(一)</a></li>
+<li><a href="http://www.cnblogs.com/Amaranthus/p/3561340.html" target="_blank" rel="external">Mongo Manual阅读笔记</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-gradle" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/03/gradle/" class="article-date">
+  	<time datetime="2016-09-03T13:03:37.000Z" itemprop="datePublished">2016-09-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/03/gradle/">gradle的一些使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h1><h2 id="获取项目依赖"><a href="#获取项目依赖" class="headerlink" title="获取项目依赖"></a>获取项目依赖</h2><p><code>gradle dependencie</code>会列出项目所有的依赖<br>如下图所示，将所有的依赖以树状结构展示出来<br><img src="/images/gradle-1.png" alt=""></p>
+<h2 id="过滤指定依赖"><a href="#过滤指定依赖" class="headerlink" title="过滤指定依赖"></a>过滤指定依赖</h2><p>gradle -q api:dependencies –configuration testCompile 的输出结果</p>
+<h2 id="获取特定依赖"><a href="#获取特定依赖" class="headerlink" title="获取特定依赖"></a>获取特定依赖</h2><p>gradle -q webapp:dependencyInsight –dependency groovy –configuration compile 的输出结果</p>
+<h2 id="exclude"><a href="#exclude" class="headerlink" title="exclude"></a>exclude</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span>(<span class="string">'com.wang.api:wang-api:2.0'</span>) &#123;</span><br><span class="line">        <span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'com.wang.api'</span>, module: <span class="string">'log4j'</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://wiki.jikexueyuan.com/project/gradle/using-the-gradle-command-line.html" target="_blank" rel="external">Gradle 命令行的基本使用</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-spring-boot-log" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/03/spring-boot-log/" class="article-date">
+  	<time datetime="2016-09-03T12:47:50.000Z" itemprop="datePublished">2016-09-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/03/spring-boot-log/">spring boot 日志管理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Spring Boot在所有内部日志中使用Commons Logging，但是默认配置也提供了对常用日志的支持，如：Java Util Logging，Log4J, Log4J2和Logback。每种Logger都可以通过配置使用控制台或者文件输出日志内容。</p>
+<h2 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h2><p>日志分为TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF等级别，可以明确指定某个包的日志等级，如下：</p>
+<blockquote>
+<p>logging.level.com.wang.util.version.ApiVersionRequestMappingHandlerMapping=error</p>
+</blockquote>
+<h2 id="文件输出"><a href="#文件输出" class="headerlink" title="文件输出"></a>文件输出</h2><p>spring boot的日志默认输出到控制台，如果想输出到文件，可以指定logging.path和logging.file</p>
+<blockquote>
+<p>logging.file=logs/test.log    // 指明输出地址<br>logging.path=logs        // 指明输出的路径<br>日志文件会在10Mb大小被截断，产生新的日志文件。<br>如产生test.log、test.log1，最新的在test.log中，也就是说之前的都丢了。</p>
+</blockquote>
+<h2 id="自定义日志配置"><a href="#自定义日志配置" class="headerlink" title="自定义日志配置"></a>自定义日志配置</h2><p>由于日志服务一般都在ApplicationContext创建前就初始化了，它并不是必须通过Spring的配置文件控制。因此通过系统属性和传统的Spring Boot外部配置文件依然可以很好的支持日志控制和管理。<br>根据不同的日志系统，你可以按如下规则组织配置文件名，就能被正确加载：</p>
+<ul>
+<li>Logback：logback-spring.xml, logback-spring.groovy, logback.xml, logback.groovy</li>
+<li>Log4j：log4j-spring.properties, log4j-spring.xml, log4j.properties, log4j.xml</li>
+<li>Log4j2：log4j2-spring.xml, log4j2.xml</li>
+<li>JDK (Java Util Logging)：logging.properties<br>Spring Boot官方推荐优先使用带有-spring的文件名作为你的日志配置（如使用logback-spring.xml，而不是logback.xml）</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://blog.didispace.com/springbootlog/" target="_blank" rel="external">spring boot日志管理</a></li>
+<li><a href="http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html" target="_blank" rel="external">官方文档</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring-boot</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-node" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/28/node/" class="article-date">
+  	<time datetime="2016-08-28T12:28:52.000Z" itemprop="datePublished">2016-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/28/node/">node小知识</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此博客主要记录平常用node的一些小知识点。</p>
+<h1 id="dependencies-与-devDependencies-的区别"><a href="#dependencies-与-devDependencies-的区别" class="headerlink" title="dependencies 与 devDependencies 的区别"></a>dependencies 与 devDependencies 的区别</h1><p><code>npm install</code>安装npm包时，有2种方式可以把它们写进<code>package.json</code>文件中</p>
+<ol>
+<li>–save：会把依赖名称添加到<code>dependencies</code>下</li>
+<li>–save-dev：会把依赖名称添加到<code>devDependencies</code>下</li>
+</ol>
+<h1 id="npm-run"><a href="#npm-run" class="headerlink" title="npm run"></a>npm run</h1><p>npm会在package.json文件中寻找srcript区域。其实<code>npm test</code>和<code>npm star</code>t是npm run test和npm run start的简写。事实上，你可以使用npm run来运行scripts里的任何条目。<br>使用npm run的方便之处在于，npm会自动把node_modules/.bin加入$PATH，这样你可以直接运行依赖程序和开发依赖程序，不用全局安装了。只要npm上的包提供命令行接口，你就可以直接使用它们。</p>
+<h1 id="node项目部署"><a href="#node项目部署" class="headerlink" title="node项目部署"></a>node项目部署</h1><p>可以利用supervisor或者forever、pm2管理进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsh对应配置文件为.zshrc，我的做法是在.zshrc里添加一行source ~/.bash_profile。</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://www.zfanw.com/blog/difference-between-dependencies-and-devdependencies.html" target="_blank" rel="external">dependencies 与 devDependencies 的区别</a></li>
+<li><a href="https://segmentfault.com/a/1190000000344102" target="_blank" rel="external">用npm自动化任务</a></li>
+<li><a href="http://n.thepana.com/2014/01/25/application_deploy/" target="_blank" rel="external">nodejs部署</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-dbutil" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/27/dbutil/" class="article-date">
+  	<time datetime="2016-08-27T09:37:46.000Z" itemprop="datePublished">2016-08-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/27/dbutil/">dbutil</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="QueryRunner-Api"><a href="#QueryRunner-Api" class="headerlink" title="QueryRunner Api"></a>QueryRunner Api</h1><ul>
+<li>insert</li>
+<li>query</li>
+<li>update</li>
+</ul>
+<h1 id="ResultSetHandler接口"><a href="#ResultSetHandler接口" class="headerlink" title="ResultSetHandler接口"></a>ResultSetHandler接口</h1><p>接口定义如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResultSetHandler</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">handle</span><span class="params">(ResultSet var1)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/27/dbutil/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-csv" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/27/csv/" class="article-date">
+  	<time datetime="2016-08-27T08:10:07.000Z" itemprop="datePublished">2016-08-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/27/csv/">csv</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java的csv框架看了一些，感觉common csv不是特别的好用，找了一个super csv感觉还不错，基本能满足我的要求。</p>
+<h1 id="writer"><a href="#writer" class="headerlink" title="writer"></a>writer</h1><ul>
+<li>CsvBeanWriter</li>
+<li>CsvListWriter</li>
+<li>CsvMapWriter<br>作用从他们的名字就可以看出来，以下为CsvBeanWriter的简单实用<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> testWriter() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    FileWriter fWriter = <span class="keyword">new</span> FileWriter(<span class="string">"test.csv"</span>)</span><br><span class="line">    ICsvBeanWriter writer = <span class="keyword">new</span> CsvBeanWriter(fWriter, CsvPreference.EXCEL_PREFERENCE)</span><br><span class="line">    writer.writeHeader(<span class="string">"姓名"</span>, <span class="string">"年龄"</span>, <span class="string">"生日"</span>)    <span class="comment">// 设置头部</span></span><br><span class="line">    String[] mapping = [<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'birth'</span>]</span><br><span class="line">    writer.write(<span class="keyword">new</span> Student(<span class="string">name:</span> <span class="string">'wanghao'</span>, <span class="string">age:</span> <span class="number">23</span>, <span class="string">birth:</span> <span class="keyword">new</span> Date()), mapping)</span><br><span class="line">    writer.close()</span><br><span class="line">    fWriter.close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="reader"><a href="#reader" class="headerlink" title="reader"></a>reader</h1><ul>
+<li>CsvBeanReader</li>
+<li>CsvListReader</li>
+<li>CsvMapReader<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testReadaer() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        FileReader fReader = <span class="keyword">new</span> FileReader(<span class="string">"test.csv"</span>)</span><br><span class="line">        ICsvBeanReader reader = <span class="keyword">new</span> CsvBeanReader(fReader, CsvPreference.EXCEL_PREFERENCE)</span><br><span class="line">        String[] headers = reader.getHeader(<span class="literal">true</span>)  <span class="comment">// 获取头部信息</span></span><br><span class="line">        String[] mapping = [<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'birth'</span>]</span><br><span class="line">        reader.read(Student.<span class="keyword">class</span>, mapping)</span><br><span class="line">        reader.close()</span><br><span class="line">        fReader.close()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="CellProcessor"><a href="#CellProcessor" class="headerlink" title="CellProcessor"></a>CellProcessor</h1><p>每一列的处理器，多少列，就应该有所少处理器。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://rensanning.iteye.com/blog/1552053" target="_blank" rel="external">Java读写csv之super csv</a></li>
+<li><a href="http://super-csv.github.io/super-csv/index.html" target="_blank" rel="external">Super Csv</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/26/linux/" class="article-date">
+  	<time datetime="2016-08-26T15:53:54.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/26/linux/">linux一些小知识点</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本博客记录linux的一些小知识点</p>
+<h1 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h1><p>sudo能够让用户以root用户执行命令，但是并不是所有的用户都能够执行sudo命令，配置在/etc/sudoers里面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root ALL=(ALL) ALL</span><br><span class="line">wanghao ALL=(ALL) ALL</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/26/linux/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-idea" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/26/idea/" class="article-date">
+  	<time datetime="2016-08-26T15:42:54.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/26/idea/">idea快捷键</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="idea快捷键"><a href="#idea快捷键" class="headerlink" title="idea快捷键"></a>idea快捷键</h1><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctrl+,</td>
+<td>自动补全（completion basic）</td>
+</tr>
+<tr>
+<td>ctrl+H</td>
+<td>查看接口的实现</td>
+</tr>
+<tr>
+<td>cmd+alt+T</td>
+<td>代码块（surround with）</td>
+</tr>
+<tr>
+<td>psvm</td>
+<td>java main函数</td>
+</tr>
+<tr>
+<td>cmd+shift+b</td>
+<td>方法返回值类型</td>
+</tr>
+<tr>
+<td>cmd+alt+b</td>
+<td>查看方法的具体实现</td>
+</tr>
+<tr>
+<td>ctrl+T</td>
+<td>refactor</td>
+</tr>
+<tr>
+<td>ctrl+alt+V</td>
+<td>自动补全返回值</td>
+</tr>
+<tr>
+<td>cmd+P</td>
+<td>查看方法参数</td>
+</tr>
+<tr>
+<td>cmd+J</td>
+<td>查看方法或类的doc</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-vi" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/26/vi/" class="article-date">
+  	<time datetime="2016-08-26T14:52:54.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/26/vi/">vi编辑器的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="光标的移动"><a href="#光标的移动" class="headerlink" title="光标的移动"></a>光标的移动</h1><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>移到行首</td>
+</tr>
+<tr>
+<td>^</td>
+<td>移到当前行第一个非空字符</td>
+</tr>
+<tr>
+<td>$</td>
+<td>移到行末</td>
+</tr>
+<tr>
+<td>w</td>
+<td>移到下一个单词或标点符号的开头</td>
+</tr>
+<tr>
+<td>W</td>
+<td>移到下一个单词的开头</td>
+</tr>
+<tr>
+<td>b</td>
+<td>移到上一个单词或标点符号的开头</td>
+</tr>
+<tr>
+<td>B</td>
+<td>移到上一个单词的开头</td>
+</tr>
+<tr>
+<td>G</td>
+<td>移到文件的最后一行</td>
+</tr>
+<tr>
+<td>numberG</td>
+<td>移动第几行</td>
+</tr>
+</tbody>
+</table>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/26/vi/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -285,545 +1001,9 @@
 
 
   
-    <article id="post-semver" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/23/semver/" class="article-date">
-  	<time datetime="2016-08-23T15:02:00.000Z" itemprop="datePublished">2016-08-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/23/semver/">语义化版本 2.0</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ol>
-<li>主版本号：不兼容的API修改</li>
-<li>次版本号：向下兼容的功能新增</li>
-<li>修订号：向下兼容的bug修复<br>如 <code>1.2.3</code></li>
-</ol>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
-<li>禁止在数字前方补零，如<code>1.09.1</code></li>
-<li>1.9.1 -&gt; 1.10 -&gt; 1.11.0</li>
-<li>先行版本号：[0-9A-Za-z-]，常用的先行版本有：alpha，beta，rc，GA(稳定版)</li>
-<li>版本编译信息：先加上一个加号再加上一连串以句点分隔的标识符号来修饰，如：<code>1.0.0-alpha+001</code></li>
-</ol>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="http://semver.org/" target="_blank" rel="external">语言化版本官网</a></li>
-<li><a href="https://github.com/zafarkhaja/jsemver" target="_blank" rel="external">java-semver实现</a></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-upload" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/23/upload/" class="article-date">
-  	<time datetime="2016-08-23T14:45:40.000Z" itemprop="datePublished">2016-08-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/23/upload/">上传文件至服务器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h1><p>scp是security copy的简写，类似的命令有cp，区别在于cp只能用于本机拷贝而不能跨服务器，而且scp是加密的。</p>
-<ol>
-<li>命令格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp [参数] [原路径] [目标路径]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/23/upload/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-groovy" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/23/groovy/" class="article-date">
-  	<time datetime="2016-08-23T14:12:01.000Z" itemprop="datePublished">2016-08-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/23/groovy/">groovy的一些坑</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用groovy也有一段时间了，此博客单纯为了记录平时遇到的坑，省的自己以后再google</p>
-<h1 id="String类型转换"><a href="#String类型转换" class="headerlink" title="String类型转换"></a>String类型转换</h1><p><code>String</code>可以通过以下方法，很方便的转换成对应的数据类型。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/23/groovy/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-asymmetric" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/14/asymmetric/" class="article-date">
-  	<time datetime="2016-08-14T05:29:34.000Z" itemprop="datePublished">2016-08-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/14/asymmetric/">不对称加密算法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="不对称加密"><a href="#不对称加密" class="headerlink" title="不对称加密"></a>不对称加密</h1><p>之前一直搞不懂不对称加密是的流程，现在搞清楚了一点。相比于对称加密，不对称加密有公钥和私钥之分。公钥可以公开，私钥不能公开。<br>具体流程可如下：</p>
-<ol>
-<li>甲生成公钥和私钥，并将公钥分享给乙</li>
-<li>乙利用公钥加密信息，发送给甲</li>
-<li>甲利用私钥解密得到明文<br>甲向乙发送信息反之。
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/14/asymmetric/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-supervisor" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/14/supervisor/" class="article-date">
-  	<time datetime="2016-08-14T04:24:38.000Z" itemprop="datePublished">2016-08-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/14/supervisor/">supervisor</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="关于supervisor"><a href="#关于supervisor" class="headerlink" title="关于supervisor"></a>关于supervisor</h1><p>是一个用python写的进程管理工具，可以很方便的用来启动、重启、关闭进程。<br>supervisor是C/S模型的程序，supervisord是server端，supervisorctl是client端。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>官网上提供了n种安装方式，但是release版只支持python 2.x，暂时还不支持python 3.x，4.0以后会支持。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/14/supervisor/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-week-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/14/week-1/" class="article-date">
-  	<time datetime="2016-08-14T04:15:36.000Z" itemprop="datePublished">2016-08-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/14/week-1/">周记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="迷茫"><a href="#迷茫" class="headerlink" title="迷茫"></a>迷茫</h1><p>最近很多地方陷入了迷茫，不光是在技术方面，生活上也有。</p>
-<h2 id="技术上"><a href="#技术上" class="headerlink" title="技术上"></a>技术上</h2><p>近一个多月的工作实在不能令我满意，尤其是接下来的一段时间，我可能要花在数据迁移方面。感觉自己的代码水平还是不够，代码写的很乱，不过我一直在寻找适合自己的编写代码的方式。<br><br><br>暂时在这个阶段，我能接触到的后端技术实在有限，希望能把公司一些Go的项目接下来，但是没有这个勇气，再者也没有时间。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mongo-auth" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/26/mongo-auth/" class="article-date">
-  	<time datetime="2016-07-26T14:59:31.000Z" itemprop="datePublished">2016-07-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/mongo-auth/">mongo用户认证</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>启动mongo时,加上<code>--auth</code>,即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath ~/mongo --auth</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/26/mongo-auth/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mongo-index" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/26/mongo-index/" class="article-date">
-  	<time datetime="2016-07-26T14:39:29.000Z" itemprop="datePublished">2016-07-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/mongo-index/">mongo索引(-)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>mongo的索引种类很多,这也是mongo查询效率高的很大原因</p>
-<h2 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h2><ul>
-<li>基本索引</li>
-<li>Text索引</li>
-<li>Geo索引(地理位置)<br>Geo索引相对比较多,比较复杂,其中还涉及到是普通的点还是GeoJsonPoint,而且各个command的单位也不一样,可能会在续集里面写到</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/26/mongo-index/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-java-concurrent" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/24/java-concurrent/" class="article-date">
-  	<time datetime="2016-07-24T13:30:18.000Z" itemprop="datePublished">2016-07-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/24/java-concurrent/">Java-concurrent</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>java创建和销毁线程还是非常消耗资源的,以前我们都是通过new一个Thread对象出来,java1.5以后推荐使用线程池的方式创建线程</p>
-<h2 id="Executors类"><a href="#Executors类" class="headerlink" title="Executors类"></a>Executors类</h2><p>java通过Executors类的静态方法创建线程池</p>
-<ol>
-<li>ExecutorService newFixedThreadPool(int nThreads):创建一个可重用的/具有固定数量的线程池</li>
-<li>ExecutorService newSingleThreadExecutor():创建一个线程池</li>
-<li>ExecutorService newCachedThreadPool():创建一个具有缓存功能的线程池，系统根据需要创建线程，这些线程将会被缓存在线程池中。</li>
-<li>ScheduledExecutorService newSingleThreadScheduledExecutor()</li>
-<li>ScheduledExecutorService newScheduledThreadPool(int corePoolSize)</li>
-</ol>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/24/java-concurrent/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
