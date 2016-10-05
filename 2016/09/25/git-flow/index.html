@@ -4,45 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>maven使用 | the-world-wang</title>
+  <title>git flow工作流 | the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运行main方法Maven的exec插件允许你运行Java项目中的main方法。
-
-编译，exec执行时是不会为你编译代码
-1mvn compile
-
-运行
-1mvn exec -DmainClass=&amp;quot;com.example.Main&amp;quot; -Dargs=&amp;quot;arg0 arg1&amp;quot; -Dexec.classpathScope=runtime
-
-
-概念groupId">
+  <meta name="description" content="git的branch和tag非常灵活，能够保证多人协作下开发。但是由于太过灵活，也会产生很多副作用。git flow就是其中的一个分支管理策略。简单的说，git flow就是建立在branch，tag等命令下，管理分支的工具。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="maven使用">
-<meta property="og:url" content="http://yoursite.com/2016/08/23/maven/index.html">
+<meta property="og:title" content="git flow工作流">
+<meta property="og:url" content="http://yoursite.com/2016/09/25/git-flow/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description" content="运行main方法Maven的exec插件允许你运行Java项目中的main方法。
-
-编译，exec执行时是不会为你编译代码
-1mvn compile
-
-运行
-1mvn exec -DmainClass=&amp;quot;com.example.Main&amp;quot; -Dargs=&amp;quot;arg0 arg1&amp;quot; -Dexec.classpathScope=runtime
-
-
-概念groupId">
-<meta property="og:updated_time" content="2016-09-10T09:42:35.000Z">
+<meta property="og:description" content="git的branch和tag非常灵活，能够保证多人协作下开发。但是由于太过灵活，也会产生很多副作用。git flow就是其中的一个分支管理策略。简单的说，git flow就是建立在branch，tag等命令下，管理分支的工具。">
+<meta property="og:image" content="http://yoursite.com/images/git-flow.png">
+<meta property="og:updated_time" content="2016-09-25T03:38:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="maven使用">
-<meta name="twitter:description" content="运行main方法Maven的exec插件允许你运行Java项目中的main方法。
-
-编译，exec执行时是不会为你编译代码
-1mvn compile
-
-运行
-1mvn exec -DmainClass=&amp;quot;com.example.Main&amp;quot; -Dargs=&amp;quot;arg0 arg1&amp;quot; -Dexec.classpathScope=runtime
-
-
-概念groupId">
+<meta name="twitter:title" content="git flow工作流">
+<meta name="twitter:description" content="git的branch和tag非常灵活，能够保证多人协作下开发。但是由于太过灵活，也会产生很多副作用。git flow就是其中的一个分支管理策略。简单的说，git flow就是建立在branch，tag等命令下，管理分支的工具。">
+<meta name="twitter:image" content="http://yoursite.com/images/git-flow.png">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -224,11 +199,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-git-flow" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/23/maven/" class="article-date">
-  	<time datetime="2016-08-23T15:13:37.000Z" itemprop="datePublished">2016-08-23</time>
+      <a href="/2016/09/25/git-flow/" class="article-date">
+  	<time datetime="2016-09-25T02:48:12.000Z" itemprop="datePublished">2016-09-25</time>
 </a>
     </div>
   
@@ -241,7 +216,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      maven使用
+      git flow工作流
     </h1>
   
 
@@ -257,56 +232,68 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="运行main方法"><a href="#运行main方法" class="headerlink" title="运行main方法"></a>运行main方法</h1><p>Maven的exec插件允许你运行Java项目中的main方法。</p>
-<ol>
-<li><p>编译，exec执行时是不会为你编译代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn exec -DmainClass=&quot;com.example.Main&quot; -Dargs=&quot;arg0 arg1&quot; -Dexec.classpathScope=runtime</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>groupId是指项目名：公司地址反写+项目名<br>artifactId指模块名：项目名+模块名<br>version指版本号<br>以上3点便是一个坐标</p>
-<h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p>mac对应的配置文件在~/.m2/settings.xml下面<br>修改本地目录<localrepository>/path/to/local/repo</localrepository><br>本地仓库<br>远程仓库（中央仓库）<br>镜像仓库</p>
-<h1 id="常用标签"><a href="#常用标签" class="headerlink" title="常用标签"></a>常用标签</h1><p>packaging jar/pom<br>dependencies<br>build<br>    plugins<br>parent<br>modules</p>
-<h1 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h1><p>compile默认<br>provided compile和test有效，如servlet等，运行时由tomcat等容器提供<br>runtime runtime和test时有效，如JDBC的具体驱动在runtime时才会加进来<br>test</p>
-<h1 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h1><ol>
-<li>短路依赖</li>
-<li>路径相同，谁先什么，便依赖谁</li>
-</ol>
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><table>
+        <p>git的branch和tag非常灵活，能够保证多人协作下开发。但是由于太过灵活，也会产生很多副作用。git flow就是其中的一个分支管理策略。简单的说，git flow就是建立在branch，tag等命令下，管理分支的工具。</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><img src="/images/git-flow.png" alt=""></p>
+<h2 id="主要分支"><a href="#主要分支" class="headerlink" title="主要分支"></a>主要分支</h2><ul>
+<li>master：主分支，也可叫做prod分支，永远处在待发布的状态。</li>
+<li>developer：开发分支，最新的开发状态。</li>
+</ul>
+<h2 id="辅助分支"><a href="#辅助分支" class="headerlink" title="辅助分支"></a>辅助分支</h2><table>
 <thead>
 <tr>
-<th>命令</th>
+<th>名称</th>
+<th>说明</th>
 <th>作用</th>
+<th>基于</th>
+<th>完成后</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>mvn clena</td>
-<td>清除target</td>
+<td>feature</td>
+<td>功能分支</td>
+<td>开发新功能</td>
+<td>develop</td>
+<td>merge回develop</td>
 </tr>
 <tr>
-<td>mvn install</td>
-<td>将jar包安装在本地仓库</td>
+<td>release</td>
+<td>待发布分支</td>
+<td>用于测试</td>
+<td>develop</td>
+<td>merge回master和develop</td>
 </tr>
 <tr>
-<td>mvn archetype:generate</td>
-<td>创建maven项目，-DgroupId指定参数</td>
-</tr>
-<tr>
-<td>mvn compile</td>
-<td>编译主程序代码，不会编译test代码。第一次运行会下载依赖</td>
-</tr>
-<tr>
-<td>mvn test-compile</td>
-<td>编译测试代码。主程序在classes下面，test在test-classes下面</td>
+<td>hotfix</td>
+<td>热修复分支</td>
+<td>修复线上bug</td>
+<td>master</td>
+<td>merge回master和develop</td>
 </tr>
 </tbody>
 </table>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="http://my.oschina.net/u/237209/blog/51976" target="_blank" rel="external">使用maven运行java的main方法</a></li>
-<li><a href="http://www.cnblogs.com/sunddenly/p/4341542.html" target="_blank" rel="external">maven常用命令</a></li>
+<h1 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h1><ol>
+<li>所有的tag应该打在master上，且基于语义版本</li>
+<li>所有的feature都应该merge会develop</li>
+<li>release分支在修复bug的时候，也可以不断的merge回develop</li>
+</ol>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><h2 id="开发新功能"><a href="#开发新功能" class="headerlink" title="开发新功能"></a>开发新功能</h2><ul>
+<li>已存在：master，develop</li>
+<li>新建：feature，finish后merge回develop，最好不要出现在feature上新建feature</li>
+</ul>
+<h2 id="准备测试"><a href="#准备测试" class="headerlink" title="准备测试"></a>准备测试</h2><ul>
+<li>已存在：master，develop</li>
+<li>新建：release。这个时候是不应该出现和这次功能相关的feature分支的。如果测试过程中发现bug，在release分支上修改。测试结束后，merge回master和develop，并在master上打tag</li>
+</ul>
+<h2 id="线上bug"><a href="#线上bug" class="headerlink" title="线上bug"></a>线上bug</h2><ul>
+<li>已存在：master，develop</li>
+<li>新建：hotfix。一些和bug修复相关的代码都应该放在hotfix上，结束后merge回master和develop，并在master上打tag。</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a href="http://stormzhang.com/git/2014/01/29/git-flow/" target="_blank" rel="external">使用git flow管理开发流程</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">git分支管理策略</a></li>
+<li><a href="http://fann.im/blog/2012/03/12/git-flow-notes/" target="_blank" rel="external">git-flow使用笔记</a></li>
 </ol>
 
       
@@ -317,18 +304,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/26/vi/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/09/25/go-pprof/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          vi编辑器的使用
+          go-pprof
         
       </div>
     </a>
   
   
-    <a href="/2016/08/23/semver/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">语义化版本 2.0</div>
+    <a href="/2016/09/03/mongo-aggregation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mongo聚合操作</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -363,7 +350,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="maven" data-title="maven使用" data-url="http://yoursite.com/2016/08/23/maven/"></div>
+	<div class="ds-thread" data-thread-key="git-flow" data-title="git flow工作流" data-url="http://yoursite.com/2016/09/25/git-flow/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

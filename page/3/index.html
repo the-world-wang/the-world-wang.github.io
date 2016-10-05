@@ -198,6 +198,128 @@
 
       <div class="body-wrap">
   
+    <article id="post-java-concurrent" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/24/java-concurrent/" class="article-date">
+  	<time datetime="2016-07-24T13:30:18.000Z" itemprop="datePublished">2016-07-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/24/java-concurrent/">Java-concurrent</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>java创建和销毁线程还是非常消耗资源的,以前我们都是通过new一个Thread对象出来,java1.5以后推荐使用线程池的方式创建线程</p>
+<h2 id="Executors类"><a href="#Executors类" class="headerlink" title="Executors类"></a>Executors类</h2><p>java通过Executors类的静态方法创建线程池</p>
+<ol>
+<li>ExecutorService newFixedThreadPool(int nThreads):创建一个可重用的/具有固定数量的线程池</li>
+<li>ExecutorService newSingleThreadExecutor():创建一个线程池</li>
+<li>ExecutorService newCachedThreadPool():创建一个具有缓存功能的线程池，系统根据需要创建线程，这些线程将会被缓存在线程池中。</li>
+<li>ScheduledExecutorService newSingleThreadScheduledExecutor()</li>
+<li>ScheduledExecutorService newScheduledThreadPool(int corePoolSize)</li>
+</ol>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/24/java-concurrent/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-go-vendor" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/24/go-vendor/" class="article-date">
+  	<time datetime="2016-07-24T12:44:21.000Z" itemprop="datePublished">2016-07-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/24/go-vendor/">go-vendor</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前学过一段时间golang,在一家创业公司实习过一段时间,做过2个项目,毕设也是用golang写的.<br>不过之前的基础比较薄弱,很多知识没有系统<br>今天就说一下golang的包管理机制.</p>
+<h2 id="为何要进行包管理"><a href="#为何要进行包管理" class="headerlink" title="为何要进行包管理"></a>为何要进行包管理</h2><h3 id="GOPATH切换"><a href="#GOPATH切换" class="headerlink" title="GOPATH切换"></a>GOPATH切换</h3><p>go1.5以前,$GOPATH这个环境变量非常的麻烦,一直要来回的切换.<br>在多个GOPATH的情况下,<code>go get</code>默认安装到第一个路径下.</p>
+<h3 id="缺乏依赖版本"><a href="#缺乏依赖版本" class="headerlink" title="缺乏依赖版本"></a>缺乏依赖版本</h3><p>直接依赖源码,没有一个明确的版本标识,开发团队容易产生不一样的版本.(比如go get的时间不一样,就会产生不一样的版本)<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/24/go-vendor/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

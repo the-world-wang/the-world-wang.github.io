@@ -6,21 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>mongo聚合操作 | the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言mongo对自己的定义就是Aggregation Pipeline Operators，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。
-聚合框架project投影投影，类似于SQL中的select123456db.foo.aggregate(&amp;#123;	$project:&amp;#123;		&quot;_id&quot;:0,		&quot;title&quot;:1	&amp;#125;">
+  <meta name="description" content="前言mongo对自己的定义就是Aggregation Pipeline Operators，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongo聚合操作">
 <meta property="og:url" content="http://yoursite.com/2016/09/03/mongo-aggregation/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description" content="前言mongo对自己的定义就是Aggregation Pipeline Operators，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。
-聚合框架project投影投影，类似于SQL中的select123456db.foo.aggregate(&amp;#123;	$project:&amp;#123;		&quot;_id&quot;:0,		&quot;title&quot;:1	&amp;#125;">
+<meta property="og:description" content="前言mongo对自己的定义就是Aggregation Pipeline Operators，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。">
 <meta property="og:image" content="http://yoursite.com/images/aggregation-pipeline.png">
 <meta property="og:image" content="http://yoursite.com/images/aggregation-distinct.png">
-<meta property="og:updated_time" content="2016-09-03T14:02:26.000Z">
+<meta property="og:updated_time" content="2016-10-05T15:19:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongo聚合操作">
-<meta name="twitter:description" content="前言mongo对自己的定义就是Aggregation Pipeline Operators，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。
-聚合框架project投影投影，类似于SQL中的select123456db.foo.aggregate(&amp;#123;	$project:&amp;#123;		&quot;_id&quot;:0,		&quot;title&quot;:1	&amp;#125;">
+<meta name="twitter:description" content="前言mongo对自己的定义就是Aggregation Pipeline Operators，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。">
 <meta name="twitter:image" content="http://yoursite.com/images/aggregation-pipeline.png">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
@@ -237,6 +234,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>mongo对自己的定义就是<code>Aggregation Pipeline Operators</code>，翻译成中文就是聚合管道操作符，这里的管道可以类比linux的管道，即将上一步的输出当做下一步的输入。<br><img src="/images/aggregation-pipeline.png" alt=""></p>
+<a id="more"></a>
 <h1 id="聚合框架"><a href="#聚合框架" class="headerlink" title="聚合框架"></a>聚合框架</h1><h2 id="project投影"><a href="#project投影" class="headerlink" title="project投影"></a>project投影</h2><p>投影，类似于SQL中的select<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.foo.aggregate(&#123;</span><br><span class="line">	$project:&#123;</span><br><span class="line">		<span class="string">"_id"</span>:<span class="number">0</span>,</span><br><span class="line">		<span class="string">"title"</span>:<span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>其中1表示投影，0表示不投影</li>
@@ -313,6 +311,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/09/25/git-flow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          git flow工作流
+        
+      </div>
+    </a>
   
   
     <a href="/2016/09/03/gradle/" id="article-nav-older" class="article-nav-link-wrap">

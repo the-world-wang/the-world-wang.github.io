@@ -4,45 +4,29 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>maven使用 | the-world-wang</title>
+  <title>go-pprof | the-world-wang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运行main方法Maven的exec插件允许你运行Java项目中的main方法。
+  <meta name="description" content="pprof是一个代码性能分析工具，可以查看CPU、内存及heap使用情况。
 
-编译，exec执行时是不会为你编译代码
-1mvn compile
-
-运行
-1mvn exec -DmainClass=&amp;quot;com.example.Main&amp;quot; -Dargs=&amp;quot;arg0 arg1&amp;quot; -Dexec.classpathScope=runtime
-
-
-概念groupId">
+net/http/pprof
+runtime/pprof查阅http/pprof就会发现，底层也是应用的runtime包，并利用http将端口暴露出来。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="maven使用">
-<meta property="og:url" content="http://yoursite.com/2016/08/23/maven/index.html">
+<meta property="og:title" content="go-pprof">
+<meta property="og:url" content="http://yoursite.com/2016/09/25/go-pprof/index.html">
 <meta property="og:site_name" content="the-world-wang">
-<meta property="og:description" content="运行main方法Maven的exec插件允许你运行Java项目中的main方法。
+<meta property="og:description" content="pprof是一个代码性能分析工具，可以查看CPU、内存及heap使用情况。
 
-编译，exec执行时是不会为你编译代码
-1mvn compile
-
-运行
-1mvn exec -DmainClass=&amp;quot;com.example.Main&amp;quot; -Dargs=&amp;quot;arg0 arg1&amp;quot; -Dexec.classpathScope=runtime
-
-
-概念groupId">
-<meta property="og:updated_time" content="2016-09-10T09:42:35.000Z">
+net/http/pprof
+runtime/pprof查阅http/pprof就会发现，底层也是应用的runtime包，并利用http将端口暴露出来。">
+<meta property="og:image" content="http://yoursite.com/images/go-pprof.png">
+<meta property="og:updated_time" content="2016-09-25T04:15:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="maven使用">
-<meta name="twitter:description" content="运行main方法Maven的exec插件允许你运行Java项目中的main方法。
+<meta name="twitter:title" content="go-pprof">
+<meta name="twitter:description" content="pprof是一个代码性能分析工具，可以查看CPU、内存及heap使用情况。
 
-编译，exec执行时是不会为你编译代码
-1mvn compile
-
-运行
-1mvn exec -DmainClass=&amp;quot;com.example.Main&amp;quot; -Dargs=&amp;quot;arg0 arg1&amp;quot; -Dexec.classpathScope=runtime
-
-
-概念groupId">
+net/http/pprof
+runtime/pprof查阅http/pprof就会发现，底层也是应用的runtime包，并利用http将端口暴露出来。">
+<meta name="twitter:image" content="http://yoursite.com/images/go-pprof.png">
   
     <link rel="alternative" href="/atom.xml" title="the-world-wang" type="application/atom+xml">
   
@@ -224,11 +208,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-go-pprof" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/23/maven/" class="article-date">
-  	<time datetime="2016-08-23T15:13:37.000Z" itemprop="datePublished">2016-08-23</time>
+      <a href="/2016/09/25/go-pprof/" class="article-date">
+  	<time datetime="2016-09-25T03:39:15.000Z" itemprop="datePublished">2016-09-25</time>
 </a>
     </div>
   
@@ -241,7 +225,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      maven使用
+      go-pprof
     </h1>
   
 
@@ -257,56 +241,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="运行main方法"><a href="#运行main方法" class="headerlink" title="运行main方法"></a>运行main方法</h1><p>Maven的exec插件允许你运行Java项目中的main方法。</p>
-<ol>
-<li><p>编译，exec执行时是不会为你编译代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn exec -DmainClass=&quot;com.example.Main&quot; -Dargs=&quot;arg0 arg1&quot; -Dexec.classpathScope=runtime</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>groupId是指项目名：公司地址反写+项目名<br>artifactId指模块名：项目名+模块名<br>version指版本号<br>以上3点便是一个坐标</p>
-<h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p>mac对应的配置文件在~/.m2/settings.xml下面<br>修改本地目录<localrepository>/path/to/local/repo</localrepository><br>本地仓库<br>远程仓库（中央仓库）<br>镜像仓库</p>
-<h1 id="常用标签"><a href="#常用标签" class="headerlink" title="常用标签"></a>常用标签</h1><p>packaging jar/pom<br>dependencies<br>build<br>    plugins<br>parent<br>modules</p>
-<h1 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h1><p>compile默认<br>provided compile和test有效，如servlet等，运行时由tomcat等容器提供<br>runtime runtime和test时有效，如JDBC的具体驱动在runtime时才会加进来<br>test</p>
-<h1 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h1><ol>
-<li>短路依赖</li>
-<li>路径相同，谁先什么，便依赖谁</li>
-</ol>
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mvn clena</td>
-<td>清除target</td>
-</tr>
-<tr>
-<td>mvn install</td>
-<td>将jar包安装在本地仓库</td>
-</tr>
-<tr>
-<td>mvn archetype:generate</td>
-<td>创建maven项目，-DgroupId指定参数</td>
-</tr>
-<tr>
-<td>mvn compile</td>
-<td>编译主程序代码，不会编译test代码。第一次运行会下载依赖</td>
-</tr>
-<tr>
-<td>mvn test-compile</td>
-<td>编译测试代码。主程序在classes下面，test在test-classes下面</td>
-</tr>
-</tbody>
-</table>
+        <p>pprof是一个代码性能分析工具，可以查看CPU、内存及heap使用情况。</p>
+<ul>
+<li>net/http/pprof</li>
+<li>runtime/pprof<br>查阅http/pprof就会发现，底层也是应用的runtime包，并利用http将端口暴露出来。</li>
+</ul>
+<a id="more"></a>
+<h1 id="pprof"><a href="#pprof" class="headerlink" title="pprof"></a>pprof</h1><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cpuprofile = flag.String(<span class="string">"cpuprofile"</span>, <span class="string">""</span>, <span class="string">"write cpu profile `file`"</span>)</span><br><span class="line"><span class="keyword">var</span> memprofile = flag.String(<span class="string">"memprofile"</span>, <span class="string">""</span>, <span class="string">"write memory profile to `file`"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    flag.Parse()</span><br><span class="line">    <span class="keyword">if</span> *cpuprofile != <span class="string">""</span> &#123;</span><br><span class="line">        f, err := os.Create(*cpuprofile)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            log.Fatal(<span class="string">"could not create CPU profile: "</span>, err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> err := pprof.StartCPUProfile(f); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            log.Fatal(<span class="string">"could not start CPU profile: "</span>, err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">defer</span> pprof.StopCPUProfile()</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> *memprofile != <span class="string">""</span> &#123;</span><br><span class="line">        f, err := os.Create(*memprofile)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            log.Fatal(<span class="string">"could not create memory profile: "</span>, err)</span><br><span class="line">        &#125;</span><br><span class="line">        runtime.GC() <span class="comment">// get up-to-date statistics</span></span><br><span class="line">        <span class="keyword">if</span> err := pprof.WriteHeapProfile(f); err != <span class="literal">nil</span> &#123;</span><br><span class="line">            log.Fatal(<span class="string">"could not write memory profile: "</span>, err)</span><br><span class="line">        &#125;</span><br><span class="line">        f.Close()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查看以上的示例代码就可以看出来，主要函数为：</p>
+<ul>
+<li>func StartCPUProfile(w io.Writer) error</li>
+<li>func StopCPUProfile()</li>
+<li>func WriteHeapProfile(w io.Writer) error</li>
+</ul>
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><p>在web中使用比较简单，只需要几行代码<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_ <span class="string">"net/http/pprof"</span></span><br><span class="line">.....</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	http.ListenAndServe(<span class="string">":6060"</span>, <span class="literal">nil</span>)</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure></p>
+<p>可以直接在网页上访问，也可使用如下的go tool pprof命令进行进一步分析。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go tool pprof http://localhost:6060/debug/pprof/heap</span><br><span class="line">go tool pprof http://localhost:6060/debug/pprof/profile</span><br><span class="line">go tool pprof http://localhost:6060/debug/pprof/block</span><br></pre></td></tr></table></figure></p>
+<p>这个时候回提示你输入命令，不过可以通过指定参数重定向到文件中(需要安装graphviz才行)。<br><img src="/images/go-pprof.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go tool pprof -png http://localhost:6060/debug/pprof/block &gt; block.png</span><br></pre></td></tr></table></figure></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="http://my.oschina.net/u/237209/blog/51976" target="_blank" rel="external">使用maven运行java的main方法</a></li>
-<li><a href="http://www.cnblogs.com/sunddenly/p/4341542.html" target="_blank" rel="external">maven常用命令</a></li>
+<li><a href="https://golang.org/pkg/runtime/pprof/" target="_blank" rel="external">runtime/pprof官方文档</a></li>
+<li><a href="https://golang.org/pkg/net/http/pprof/" target="_blank" rel="external">http/pprof</a></li>
+<li><a href="http://www.cnblogs.com/yjf512/archive/2012/12/27/2835331.html" target="_blank" rel="external">go的pprof的使用</a></li>
+<li><a href="http://zengrong.net/post/2294.htm" target="_blank" rel="external">Graphviz 简易教程</a></li>
+<li><a href="http://xiaorui.cc/2016/03/20/golang%E4%BD%BF%E7%94%A8pprof%E7%9B%91%E6%8E%A7%E6%80%A7%E8%83%BD%E5%8F%8Agc%E8%B0%83%E4%BC%98/" target="_blank" rel="external">Golang使用pprof监控性能及GC调优</a></li>
 </ol>
 
       
@@ -317,18 +273,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/26/vi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          vi编辑器的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/08/23/semver/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">语义化版本 2.0</div>
+    <a href="/2016/09/25/git-flow/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git flow工作流</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -363,7 +310,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="maven" data-title="maven使用" data-url="http://yoursite.com/2016/08/23/maven/"></div>
+	<div class="ds-thread" data-thread-key="go-pprof" data-title="go-pprof" data-url="http://yoursite.com/2016/09/25/go-pprof/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
