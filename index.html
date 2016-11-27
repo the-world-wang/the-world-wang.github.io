@@ -198,6 +198,322 @@
 
       <div class="body-wrap">
   
+    <article id="post-java" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/java/" class="article-date">
+  	<time datetime="2016-11-27T10:15:13.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/java/">java</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MessageFormater"><a href="#MessageFormater" class="headerlink" title="MessageFormater"></a>MessageFormater</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FormatElement:</span><br><span class="line">         &#123; ArgumentIndex &#125;：是从0开始的入参位置索引。</span><br><span class="line">         &#123; ArgumentIndex , FormatType &#125;</span><br><span class="line">         &#123; ArgumentIndex , FormatType , FormatStyle &#125;</span><br><span class="line"></span><br><span class="line">Object[] names = new Object[]&#123;&quot;12&quot;&#125;;</span><br><span class="line">// 预编译版，可重复使用</span><br><span class="line">new MessageFormat(&quot;na&#123;0&#125;&#123;1,number&#125;&quot;).format(names);</span><br><span class="line">// 普通版本</span><br><span class="line">MessageFormat.format(&quot;name&#123;0&#125;&quot;, 1, 2);</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://vence.coding.me/2016/04/29/javamethod-messageformat/" target="_blank" rel="external">Java中MessageFormat的使用</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-h2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/h2/" class="article-date">
+  	<time datetime="2016-11-27T10:01:47.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/h2/">h2</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="内存数据库"><a href="#内存数据库" class="headerlink" title="内存数据库"></a>内存数据库</h2><p><code>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</code></p>
+<ul>
+<li>mem:内存数据库</li>
+<li>test: namespace</li>
+<li>DELAY:默认情况，最后一次连接close，数据库就关闭，加上delay，会知道jvm结束后才关闭。</li>
+</ul>
+<h2 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring-boot"></a>spring-boot</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.url=jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</span><br><span class="line">spring.datasource.driverClassName=org.h2.Driver</span><br><span class="line">spring.datasource.username=sa</span><br><span class="line">spring.datasource.password=</span><br><span class="line">spring.jpa.database-platform=org.hibernate.dialect.H2Dialect</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.h2database.com/html/features.html" target="_blank" rel="external">h2-feature</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-spring" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/spring/" class="article-date">
+  	<time datetime="2016-11-27T09:59:04.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/spring/">spring小知识</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.http.encoding.charset=UTF-8  Charset of HTTP requests and responses. Added to the &quot;Content-Type&quot; header.</span><br><span class="line">spring.http.encoding.enabled=true  Enable http encoding support.</span><br><span class="line">spring.http.encoding.force=true   Force the encoding to the configured charset on HTTP requests and responses.</span><br></pre></td></tr></table></figure>
+<h2 id="扫描类"><a href="#扫描类" class="headerlink" title="扫描类"></a>扫描类</h2><p>ClassPathScanningCandidateComponentProvider</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-it" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/it/" class="article-date">
+  	<time datetime="2016-11-27T09:54:28.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/it/">it</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>动态SQL：Querydsl和jOOQ</li>
+<li>rest test: REST Assured</li>
+<li>rest server : spark,blade</li>
+<li>rest客户端：retrofit</li>
+<li>读取命令行参数：apache-common-cli</li>
+<li>apache-kylin</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://jianwl.com/2016/06/18/JOOQ%E4%B9%8BCURD%E8%AF%AD%E6%B3%95/" target="_blank" rel="external">JOOQ之CURD语法</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-hamcrest" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/hamcrest/" class="article-date">
+  	<time datetime="2016-11-27T09:27:01.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/hamcrest/">hamcrest</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前写junit，一直使用如下方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assertEquals(a, b);</span><br><span class="line">assertTrue(a);</span><br></pre></td></tr></table></figure></p>
+<p>assertTrue还好，基本能够反映出意思，但是assertEquals不够灵活，而且没办法看出actual和expect</p>
+<h2 id="get-started"><a href="#get-started" class="headerlink" title="get started"></a>get started</h2><p>junit 4.x会自带hamcrest-core这个包，如果需要更多的matcher，可以引入如下的依赖。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.hamcrest&lt;/groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;hamcrest-library&lt;/artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.3&lt;/version&gt;</span><br><span class="line">       &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">import static org.hamcrest.Matchers.*;</span><br><span class="line">import static org.junit.Assert.*;</span><br></pre></td></tr></table></figure></p>
+<h2 id="常用匹配器"><a href="#常用匹配器" class="headerlink" title="常用匹配器"></a>常用匹配器</h2><h3 id="core"><a href="#core" class="headerlink" title="core"></a>core</h3><ol>
+<li>anything：总是匹配</li>
+<li>describedAs:</li>
+<li>is</li>
+</ol>
+<h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><ul>
+<li>allOf：所有的匹配器都匹配才匹配</li>
+<li>anyOf：任意一个匹配器匹配即可</li>
+<li>both：</li>
+<li>either：</li>
+<li>not：如果匹配器不满足</li>
+</ul>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ul>
+<li>equalTo: 对象是否equal</li>
+<li>instanceOf,isCompatibleType：比较类型</li>
+<li>notNull,nullValue是否为null</li>
+<li>sameInstance</li>
+</ul>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
+<li>hasItem, hasItems：测试一个集合包含一个元素<br>hasItemInArray - 测试一个数组包含一个元素</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://www.jianshu.com/p/530a567b649c" target="_blank" rel="external">JaveEE测试：第三步-使用hamcrest</a></li>
+<li><a href="https://code.google.com/archive/p/hamcrest/" target="_blank" rel="external">官方文档</a></li>
+<li><a href="http://2005713.blog.51cto.com/1995713/518532" target="_blank" rel="external">官方文档-翻译</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-go-pprof" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -490,361 +806,6 @@
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring-boot</a></li></ul>
 	</div>
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-node" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/28/node/" class="article-date">
-  	<time datetime="2016-08-28T12:28:52.000Z" itemprop="datePublished">2016-08-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/28/node/">node小知识</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>此博客主要记录平常用node的一些小知识点。</p>
-<h1 id="dependencies-与-devDependencies-的区别"><a href="#dependencies-与-devDependencies-的区别" class="headerlink" title="dependencies 与 devDependencies 的区别"></a>dependencies 与 devDependencies 的区别</h1><p><code>npm install</code>安装npm包时，有2种方式可以把它们写进<code>package.json</code>文件中</p>
-<ol>
-<li>–save：会把依赖名称添加到<code>dependencies</code>下</li>
-<li>–save-dev：会把依赖名称添加到<code>devDependencies</code>下</li>
-</ol>
-<h1 id="npm-run"><a href="#npm-run" class="headerlink" title="npm run"></a>npm run</h1><p>npm会在package.json文件中寻找srcript区域。其实<code>npm test</code>和<code>npm star</code>t是npm run test和npm run start的简写。事实上，你可以使用npm run来运行scripts里的任何条目。<br>使用npm run的方便之处在于，npm会自动把node_modules/.bin加入$PATH，这样你可以直接运行依赖程序和开发依赖程序，不用全局安装了。只要npm上的包提供命令行接口，你就可以直接使用它们。</p>
-<h1 id="node项目部署"><a href="#node项目部署" class="headerlink" title="node项目部署"></a>node项目部署</h1><p>可以利用supervisor或者forever、pm2管理进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsh对应配置文件为.zshrc，我的做法是在.zshrc里添加一行source ~/.bash_profile。</span><br></pre></td></tr></table></figure></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="https://www.zfanw.com/blog/difference-between-dependencies-and-devdependencies.html" target="_blank" rel="external">dependencies 与 devDependencies 的区别</a></li>
-<li><a href="https://segmentfault.com/a/1190000000344102" target="_blank" rel="external">用npm自动化任务</a></li>
-<li><a href="http://n.thepana.com/2014/01/25/application_deploy/" target="_blank" rel="external">nodejs部署</a></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-dbutil" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/27/dbutil/" class="article-date">
-  	<time datetime="2016-08-27T09:37:46.000Z" itemprop="datePublished">2016-08-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/27/dbutil/">dbutil</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="QueryRunner-Api"><a href="#QueryRunner-Api" class="headerlink" title="QueryRunner Api"></a>QueryRunner Api</h1><ul>
-<li>insert</li>
-<li>query</li>
-<li>update</li>
-</ul>
-<h1 id="ResultSetHandler接口"><a href="#ResultSetHandler接口" class="headerlink" title="ResultSetHandler接口"></a>ResultSetHandler接口</h1><p>接口定义如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResultSetHandler</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">handle</span><span class="params">(ResultSet var1)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/27/dbutil/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-csv" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/27/csv/" class="article-date">
-  	<time datetime="2016-08-27T08:10:07.000Z" itemprop="datePublished">2016-08-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/27/csv/">csv</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java的csv框架看了一些，感觉common csv不是特别的好用，找了一个super csv感觉还不错，基本能满足我的要求。</p>
-<h1 id="writer"><a href="#writer" class="headerlink" title="writer"></a>writer</h1><ul>
-<li>CsvBeanWriter</li>
-<li>CsvListWriter</li>
-<li>CsvMapWriter<br>作用从他们的名字就可以看出来，以下为CsvBeanWriter的简单实用<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> testWriter() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    FileWriter fWriter = <span class="keyword">new</span> FileWriter(<span class="string">"test.csv"</span>)</span><br><span class="line">    ICsvBeanWriter writer = <span class="keyword">new</span> CsvBeanWriter(fWriter, CsvPreference.EXCEL_PREFERENCE)</span><br><span class="line">    writer.writeHeader(<span class="string">"姓名"</span>, <span class="string">"年龄"</span>, <span class="string">"生日"</span>)    <span class="comment">// 设置头部</span></span><br><span class="line">    String[] mapping = [<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'birth'</span>]</span><br><span class="line">    writer.write(<span class="keyword">new</span> Student(<span class="string">name:</span> <span class="string">'wanghao'</span>, <span class="string">age:</span> <span class="number">23</span>, <span class="string">birth:</span> <span class="keyword">new</span> Date()), mapping)</span><br><span class="line">    writer.close()</span><br><span class="line">    fWriter.close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="reader"><a href="#reader" class="headerlink" title="reader"></a>reader</h1><ul>
-<li>CsvBeanReader</li>
-<li>CsvListReader</li>
-<li>CsvMapReader<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> testReadaer() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        FileReader fReader = <span class="keyword">new</span> FileReader(<span class="string">"test.csv"</span>)</span><br><span class="line">        ICsvBeanReader reader = <span class="keyword">new</span> CsvBeanReader(fReader, CsvPreference.EXCEL_PREFERENCE)</span><br><span class="line">        String[] headers = reader.getHeader(<span class="literal">true</span>)  <span class="comment">// 获取头部信息</span></span><br><span class="line">        String[] mapping = [<span class="string">'name'</span>, <span class="string">'age'</span>, <span class="string">'birth'</span>]</span><br><span class="line">        reader.read(Student.<span class="keyword">class</span>, mapping)</span><br><span class="line">        reader.close()</span><br><span class="line">        fReader.close()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="CellProcessor"><a href="#CellProcessor" class="headerlink" title="CellProcessor"></a>CellProcessor</h1><p>每一列的处理器，多少列，就应该有所少处理器。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="http://rensanning.iteye.com/blog/1552053" target="_blank" rel="external">Java读写csv之super csv</a></li>
-<li><a href="http://super-csv.github.io/super-csv/index.html" target="_blank" rel="external">Super Csv</a></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-linux" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/26/linux/" class="article-date">
-  	<time datetime="2016-08-26T15:53:54.000Z" itemprop="datePublished">2016-08-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/26/linux/">linux一些小知识点</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本博客记录linux的一些小知识点</p>
-<h1 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h1><p>sudo能够让用户以root用户执行命令，但是并不是所有的用户都能够执行sudo命令，配置在/etc/sudoers里面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root ALL=(ALL) ALL</span><br><span class="line">wanghao ALL=(ALL) ALL</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/26/linux/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-idea" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/26/idea/" class="article-date">
-  	<time datetime="2016-08-26T15:42:54.000Z" itemprop="datePublished">2016-08-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/26/idea/">idea快捷键</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="idea快捷键"><a href="#idea快捷键" class="headerlink" title="idea快捷键"></a>idea快捷键</h1><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ctrl+,</td>
-<td>自动补全（completion basic）</td>
-</tr>
-<tr>
-<td>ctrl+H</td>
-<td>查看接口的实现</td>
-</tr>
-<tr>
-<td>cmd+alt+T</td>
-<td>代码块（surround with）</td>
-</tr>
-<tr>
-<td>psvm</td>
-<td>java main函数</td>
-</tr>
-<tr>
-<td>cmd+shift+b</td>
-<td>方法返回值类型</td>
-</tr>
-<tr>
-<td>cmd+alt+b</td>
-<td>查看方法的具体实现</td>
-</tr>
-<tr>
-<td>ctrl+T</td>
-<td>refactor</td>
-</tr>
-<tr>
-<td>ctrl+alt+V</td>
-<td>自动补全返回值</td>
-</tr>
-<tr>
-<td>cmd+P</td>
-<td>查看方法参数</td>
-</tr>
-<tr>
-<td>cmd+J</td>
-<td>查看方法或类的doc</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
       
 
       
